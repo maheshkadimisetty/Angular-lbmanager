@@ -27,7 +27,8 @@
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
-            "scripts": [ "node_modules/jquery/dist/jquery.min.js" ]
+            "scripts": [ "node_modules/jquery/dist/jquery.min.js",
+                         "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -78,7 +79,8 @@
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
-            "scripts": [ "node_modules/jquery/dist/jquery.min.js"],
+            "scripts": [ "node_modules/jquery/dist/jquery.min.js",
+                          "node_modules/bootstrap/dist/js/bootstrap.min.js"],
             "assets": [
               "src/favicon.ico",
               "src/assets"

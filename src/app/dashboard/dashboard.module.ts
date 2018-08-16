@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HomeComponent } from './home/home.component';
-import { AllbooksComponent } from './book/allbooks/allbooks.component';
 import { AboutComponent } from './about/about.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -14,7 +14,8 @@ import { AboutComponent } from './about/about.component';
   declarations: [
     DashboardComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    UserComponent
   ]
 })
 export class DashboardModule { }

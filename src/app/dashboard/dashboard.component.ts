@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Routes, Router, RouterModule } from '@angular/router';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -8,7 +10,7 @@ import * as $ from 'jquery';
 export class DashboardComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private router: Router) { }
   public username:string;
   ngOnInit() {
      this.username=localStorage.getItem('username');
@@ -38,5 +40,10 @@ export class DashboardComponent implements OnInit {
         $('#usermenu').toggle();
       });
     });
+  }
+  public logout(){
+    localStorage.removeItem('username');
+    this.router.navigate(['/sign-in']);
+    //localStorage.clear();
   }
 }

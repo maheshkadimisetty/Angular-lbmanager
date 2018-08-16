@@ -25,11 +25,12 @@ export class SigninComponent implements OnInit {
       localStorage.setItem('email', response['user']['email']);
       localStorage.setItem('role', response['user']['role']);
       console.log(localStorage.getItem('email'));
-      if(this.model.username == 'admin' && this.model.password == 'admin'){
+      if(localStorage.getItem('username') == 'admin' && localStorage.getItem('role') == 'admin'){
         console.log("form data",inputForm);
         //alert("login successfully!!")
         this.router.navigate(['/dashboard/dashboard']);
       }else {
+        //this.router.navigate(['/sign-in']);
        // alert("Invalid credentials");
       }
     });

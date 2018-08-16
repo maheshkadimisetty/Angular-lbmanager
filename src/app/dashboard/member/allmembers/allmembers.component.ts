@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MemberService} from '../service/member.service';
+import {FilterPipe} from '../../filter.pipe'
 @Component({
   selector: 'app-allmembers',
   templateUrl: './allmembers.component.html',
@@ -8,8 +9,8 @@ import {MemberService} from '../service/member.service';
 export class AllmembersComponent implements OnInit {
 
   constructor(private memberService:MemberService) { }
-   
- 
+
+
   public username:string;
   members: any=[];
   member:any;
@@ -19,7 +20,7 @@ export class AllmembersComponent implements OnInit {
       console.log(response);
       this.members=response;
       console.log(this.members);
-        
+
     });
 
   }
