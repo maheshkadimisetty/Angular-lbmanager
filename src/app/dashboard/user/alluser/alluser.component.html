@@ -1,0 +1,37 @@
+<div class="col-md-12">
+  <h3 style="padding-left: 10px">All Users</h3>
+  <div class="card" style="margin: 10px; border-radius: 10px">
+    <div class="card-header">
+      <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
+        <input type="text" class="form-control"  ng-model="searchText" placeholder="search">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table table-responsive ">
+        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover ">
+          <thead>
+          <tr>
+            <th class="id" ng-click="sort_by('username')">User Name&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('username')"></i></th>
+            <th class="name" ng-click="sort_by('email')">Email Id<i class="glyphicon pull-right" ng-class="getIcon('email')"></i></th>
+            <th class="description" ng-click="sort_by('role')">Role<i class="glyphicon pull-right" ng-class="getIcon('role')"></i></th>
+            <th class="author" ng-click="sort_by('fine')">Fine<i class="glyphicon pull-right" ng-class="getIcon('fine')"></i></th>
+            <th class="field5"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.username }}</td>
+            <td>{{user.email }}</td>
+            <td>{{user.role }}</td>
+            <td>{{user.fine }}</td>
+            <td style="text-align: center"><button class="btn btn-warning btn-sm" style="margin: 5px" ng-click='editUser(user)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-sm" style="margin: 5px" ng-click='delete(user)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

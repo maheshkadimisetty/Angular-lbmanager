@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: './book/book.module#BookModule'
       },
       {
+        path: 'user',
+        loadChildren: './user/user.module#UserModule'
+      },
+      {
         path: 'about',
         component:AboutComponent
       }

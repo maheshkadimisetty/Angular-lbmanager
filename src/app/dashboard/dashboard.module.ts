@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -14,8 +13,7 @@ import { UserComponent } from './user/user.component';
   declarations: [
     DashboardComponent,
     HomeComponent,
-    AboutComponent,
-    UserComponent
+    AboutComponent
   ]
 })
 export class DashboardModule { }
