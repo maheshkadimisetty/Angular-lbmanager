@@ -13,7 +13,7 @@ export class CreatememberComponent implements OnInit {
   member = new Member('','','',new Date(),'','','','');
   //members : any = {};
   createMember(inputForm) : void {
-    alert("login successfully!!");
+    alert("Created successfully!!");
     //console.log(this.members);
     this.memberService.createMember(this.member).subscribe((response) =>  {
       //alert("login successfully!!");

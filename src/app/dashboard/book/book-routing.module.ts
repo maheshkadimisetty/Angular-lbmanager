@@ -3,13 +3,18 @@
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AllbooksComponent} from './allbooks/allbooks.component'
+import {AllbooksComponent} from './allbooks/allbooks.component';
+import {AddbookComponent} from './addbook/addbook.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/allBooks', pathMatch: 'full' },
   {
     path: 'allBooks',
     component: AllbooksComponent,
+  },
+  {
+    path: 'addBook',
+    component: AddbookComponent,
   }
 ];
 

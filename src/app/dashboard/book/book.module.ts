@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookRoutingModule } from './book-routing.module';
 import {AllbooksComponent} from './allbooks/allbooks.component';
 import { BookComponent } from './book.component';
+import { AddbookComponent } from './addbook/addbook.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import { BookComponent } from './book.component';
     FormsModule,
     BookRoutingModule
   ],
-  declarations: [AllbooksComponent, BookComponent]
+  declarations: [AllbooksComponent, BookComponent, AddbookComponent]
 })
 export class BookModule { }
 

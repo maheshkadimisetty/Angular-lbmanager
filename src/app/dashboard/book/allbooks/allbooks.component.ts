@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from '../service/book.service';
+import {FilterPipe} from '../../filter.pipe'
 
 @Component({
   selector: 'app-allbooks',

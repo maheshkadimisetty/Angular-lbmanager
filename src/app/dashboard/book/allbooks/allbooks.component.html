@@ -29,7 +29,7 @@
             <td>{{book.bookName}}</td>
             <td>{{book.department }}</td>
             <td>{{book.author }}</td>
-            <td>{{book.availableDate}}</td>
+            <td>{{book.availableDate | date }}</td>
             <td>{{book.isAvailable}}</td>
             <td style="text-align: center"><button class="btn btn-warning btn-sm" style="margin: 5px" ng-click='editBook(book)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-sm" style="margin: 5px" ng-click='delete(book)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>
