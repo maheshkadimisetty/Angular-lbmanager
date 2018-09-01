@@ -13,7 +13,7 @@ export class AdduserComponent implements OnInit {
 
   user = new User('','','','','');
   //members : any = {};
-  createUser(inputForm) : void {
+  createUser() : void {
     alert("login successfully!!");
     //console.log(this.members);
     this.userService.createUser(this.user).subscribe((response) =>  {

@@ -10,7 +10,7 @@ export class AllmembersComponent implements OnInit {
 
   constructor(private memberService:MemberService) { }
 
-
+  searchText: string;
   public username:string;
   members: any=[];
   member:any;

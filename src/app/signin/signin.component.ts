@@ -12,11 +12,12 @@ export class SigninComponent implements OnInit {
 
   constructor( private signInservice:SignInService,private router: Router) { }
   model = new User('','');
+  isLogin = true;
   ngOnInit() {
   }
   public user:any[];
 
-  login(inputForm) : void {
+  login() : void {
     this.signInservice.loginUser(this.model).subscribe((response) =>  {
       //alert("login successfully!!");
       console.log(response);
@@ -26,7 +27,7 @@ export class SigninComponent implements OnInit {
       localStorage.setItem('role', response['user']['role']);
       console.log(localStorage.getItem('email'));
       if(localStorage.getItem('username') == 'admin' && localStorage.getItem('role') == 'admin'){
-        console.log("form data",inputForm);
+        // console.log("form data",inputForm);
         //alert("login successfully!!")
         this.router.navigate(['/dashboard/dashboard']);
       }else {

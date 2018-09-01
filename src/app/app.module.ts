@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
 import {SignInService} from './signin/signin.service';
+import {FilterPipe} from './dashboard/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

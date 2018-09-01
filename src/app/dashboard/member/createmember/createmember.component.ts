@@ -12,7 +12,7 @@ export class CreatememberComponent implements OnInit {
   constructor( private memberService:MemberService) { }
   member = new Member('','','',new Date(),'','','','');
   //members : any = {};
-  createMember(inputForm) : void {
+  createMember() : void {
     alert("Created successfully!!");
     //console.log(this.members);
     this.memberService.createMember(this.member).subscribe((response) =>  {

@@ -12,7 +12,7 @@ export class AddbookComponent implements OnInit {
   constructor( private bookService:BookService) { }
   book = new Book('','','','');
   //members : any = {};
-  createBook(inputForm) : void {
+  createBook() : void {
     alert("Added successfully!!");
     //console.log(this.members);
     this.bookService.addbook(this.book).subscribe((response) =>  {
