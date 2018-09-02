@@ -11,16 +11,16 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(private router: Router) { }
-  public username:string;
+  public username: string;
   ngOnInit() {
-     this.username=localStorage.getItem('username');
-    //alert(username);
+     this.username = localStorage.getItem('username');
+    // alert(username);
     $(document).ready(function () {
       $('#pageSubmenu').toggle();
       $('#pageSubmenu1').toggle();
       $('#userSubmenu').toggle();
       $('#pageSubmenu2').toggle();
-      //$('#usrmenu').toggle();
+      // $('#usrmenu').toggle();
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
       });
@@ -41,9 +41,9 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-  public logout(){
+  public logout() {
     localStorage.removeItem('username');
     this.router.navigate(['/sign-in']);
-    //localStorage.clear();
+    localStorage.clear();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from '../service/book.service';
-import {Book} from './createbook'
+import { BookService } from '../service/book.service';
+import { Book } from './createbook';
 
 @Component({
   selector: 'app-addbook',
@@ -8,20 +8,17 @@ import {Book} from './createbook'
   styleUrls: ['./addbook.component.css']
 })
 export class AddbookComponent implements OnInit {
-
-  constructor( private bookService:BookService) { }
-  book = new Book('','','',0);
-  //members : any = {};
-  createBook() : void {
-    alert("Added successfully!!");
-    //console.log(this.members);
-    this.bookService.addbook(this.book).subscribe((response) =>  {
-      //alert("login successfully!!");
+  constructor(private bookService: BookService) {}
+  book = new Book('', '', '', 0);
+  // members : any = {};
+  createBook(): void {
+    alert('Added successfully!!');
+    // console.log(this.members);
+    this.bookService.addbook(this.book).subscribe(response => {
+      // alert("login successfully!!");
       console.log(response);
     });
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
