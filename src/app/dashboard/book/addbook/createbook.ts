@@ -7,6 +7,6 @@ export class Book {
     public bookName: string,
     public author: string,
     public department: string,
-    public numberOfCopies: string
+    public numberOfCopies: number
   ) {  }
 }

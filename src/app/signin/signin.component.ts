@@ -12,7 +12,7 @@ export class SigninComponent implements OnInit {
 
   constructor( private signInservice:SignInService,private router: Router) { }
   model = new User('','');
-  isLogin = true;
+  isLogin = false;
   ngOnInit() {
   }
   public user:any[];
@@ -36,5 +36,9 @@ export class SigninComponent implements OnInit {
       }
     });
 
+  }
+  forgot() : void{
+    this.isLogin = true;
+    //alert('clicked')
   }
 }

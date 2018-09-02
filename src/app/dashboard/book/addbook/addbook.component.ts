@@ -10,7 +10,7 @@ import {Book} from './createbook'
 export class AddbookComponent implements OnInit {
 
   constructor( private bookService:BookService) { }
-  book = new Book('','','','');
+  book = new Book('','','',0);
   //members : any = {};
   createBook() : void {
     alert("Added successfully!!");
