@@ -3,9 +3,11 @@
   <div class="card" style="margin: 10px; border-radius: 10px">
     <div class="card-header">
       <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
-        <input type="text" class="form-control"  ng-model="searchText" placeholder="search">
+        <input type="text" class="form-control" ng-model="searchText" placeholder="search">
         <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+          <span class="input-group-text" id="basic-addon2">
+            <i class="fa fa-search"></i>
+          </span>
         </div>
       </div>
     </div>
@@ -13,30 +15,48 @@
       <div class="table table-responsive ">
         <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover ">
           <thead>
-          <tr>
-            <th class="id" ng-click="sort_by('bookId')">Book ID&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('bookId')"></i></th>
-            <th class="name" ng-click="sort_by('bookName')">Book Name<i class="glyphicon pull-right" ng-class="getIcon('bookName')"></i></th>
-            <th class="description" ng-click="sort_by('department')">Deparment<i class="glyphicon pull-right" ng-class="getIcon('department')"></i></th>
-            <th class="author" ng-click="sort_by('author')">Author<i class="glyphicon pull-right" ng-class="getIcon('author')"></i></th>
-            <th class="field3" ng-click="sort_by('availableDate')">Avaliable Date<i class="glyphicon pull-right" ng-class="getIcon('availableDate')"></i></th>
-            <th class="field4" ng-click="sort_by('isAvailable')">Available<i class="glyphicon pull-right" ng-class="getIcon('isAvailable')"></i></th>
-            <th class="field5"></th>
-          </tr>
+            <tr>
+              <th class="id" ng-click="sort_by('bookId')">Book ID&nbsp;
+                <i class="glyphicon pull-right" ng-class="getIcon('bookId')"></i>
+              </th>
+              <th class="name" ng-click="sort_by('bookName')">Book Name
+                <i class="glyphicon pull-right" ng-class="getIcon('bookName')"></i>
+              </th>
+              <th class="description" ng-click="sort_by('department')">Deparment
+                <i class="glyphicon pull-right" ng-class="getIcon('department')"></i>
+              </th>
+              <th class="author" ng-click="sort_by('author')">Author
+                <i class="glyphicon pull-right" ng-class="getIcon('author')"></i>
+              </th>
+              <th class="field3" ng-click="sort_by('availableDate')">Avaliable Date
+                <i class="glyphicon pull-right" ng-class="getIcon('availableDate')"></i>
+              </th>
+              <th class="field4" ng-click="sort_by('isAvailable')">Available
+                <i class="glyphicon pull-right" ng-class="getIcon('isAvailable')"></i>
+              </th>
+              <th class="field5"></th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let book of books">
-            <td>{{book.bookId}}</td>
-            <td>{{book.bookName}}</td>
-            <td>{{book.department }}</td>
-            <td>{{book.author }}</td>
-            <td>{{book.availableDate | date }}</td>
-            <td>{{book.isAvailable}}</td>
-            <td style="text-align: center"><button class="btn btn-warning btn-sm" style="margin: 5px" ng-click='editBook(book)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-sm" style="margin: 5px" ng-click='delete(book)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-          </tr>
+            <tr *ngFor="let book of books">
+              <td>{{book.bookId}}</td>
+              <td>{{book.bookName}}</td>
+              <td>{{book.department }}</td>
+              <td>{{book.author }}</td>
+              <td>{{book.availableDate | date }}</td>
+              <td>{{book.isAvailable}}</td>
+              <td style="text-align: center">
+                <button class="btn btn-warning btn-sm" style="margin: 5px" (click)='editBook(book)'>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" style="margin: 5px" (click)='delete(book)'>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
-

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from '../service/book.service';
-import {FilterPipe} from '../../filter.pipe'
+import { BookService } from '../service/book.service';
+import { FilterPipe } from '../../filter.pipe';
 
 @Component({
   selector: 'app-allbooks',
@@ -8,22 +8,27 @@ import {FilterPipe} from '../../filter.pipe'
   styleUrls: ['./allbooks.component.css']
 })
 export class AllbooksComponent implements OnInit {
+  constructor(private bookService: BookService) {}
 
-  constructor(private bookService:BookService) { }
+  public username: string;
+  books: any = [];
+  book: any;
 
+  editBook(): void {}
 
-  public username:string;
-  books: any=[];
-  book:any;
-
-  ngOnInit() {
-    this.bookService.allbooks().subscribe((response) =>  {
+  delete(book): void {
+    // alert(book);
+    // console.log(book);
+    this.bookService.deletebook(book).subscribe(response => {
+      alert('Deleted successfully!!');
       console.log(response);
-      this.books=response;
-      console.log(this.books);
-
     });
-
   }
-
+  ngOnInit() {
+    this.bookService.allbooks().subscribe(response => {
+      console.log(response);
+      this.books = response;
+      console.log(this.books);
+    });
+  }
 }
