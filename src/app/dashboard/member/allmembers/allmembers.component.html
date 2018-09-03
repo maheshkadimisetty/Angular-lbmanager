@@ -45,27 +45,10 @@
           <td>{{member.bookLimit}}</td>
           <td>{{member.fine}}</td>
           <td>{{member.membertype}}</td>
-          <td style="text-align: center"><button class="btn btn-warning btn-md" style="margin: 5px;display: inline" ng-click='editMember(member)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-md" style="margin: 5px;display: inline" ng-click='delete(member)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+          <td style="text-align: center"><button class="btn btn-warning btn-md" style="margin: 5px;display: inline" (click)='editMember(member)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-md" style="margin: 5px;display: inline" (click)=' delete(member)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
         </tr>
-        <!-- <tr ng-repeat="member in totalMembers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | orderBy:sort.active:sort.descending | filter: searchText">
-            <td>{{member.memberId}}</td>
-            <td>{{member.firstName | capitalize}}</td>
-            <td>{{member.lastName  | capitalize}}</td>
-            <td>{{member.pin  | uppercase}}</td>
-            <td>{{member.joinDate | date:'dd MMM yyyy'}}</td>
-            <td>{{member.email}}</td>
-            <td>{{member.gender}}</td>
-            <td>{{member.department}}</td>
-            <td>{{3-member.bookLimit}}</td>
-            <td>{{member.fine}}</td>
-            <td>{{member.membertype}}</td>
-            <td style="text-align: center"><button class="btn btn-warning btn-md" style="margin: 5px;display: inline" ng-click='editMember(member)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-md" style="margin: 5px;display: inline" ng-click='delete(member)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-        </tr> -->
         </tbody>
       </table>
-      <!-- <div colspan="10" class="pagination pull-right">
-          <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
-      </div> -->
     </div>
   </div>
 </div>

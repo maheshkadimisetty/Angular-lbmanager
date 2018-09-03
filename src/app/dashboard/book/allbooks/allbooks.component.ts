@@ -22,6 +22,7 @@ export class AllbooksComponent implements OnInit {
     this.bookService.deletebook(book).subscribe(response => {
       alert('Deleted successfully!!');
       console.log(response);
+      this.ngOnInit();
     });
   }
   ngOnInit() {

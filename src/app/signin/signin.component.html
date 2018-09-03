@@ -11,12 +11,12 @@
 
           <div>
 
-            <h1 style="text-align: center;color: white">LOG IN</h1>
+            <h2 style="text-align: center;color: white">LOG IN</h2>
 
           </div>
           <div class="card-body">
             <div [hidden]="isLogin">
-              <form name="loginForm"  (ngSubmit)="login()" style="margin-top:30px;margin-bottom: 30px;" novalidate>
+              <form name="loginForm"  (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
 
                 <div>
                   <input type="text" name="username" class="form-control input-lg" [(ngModel)]="model.username" placeholder="Username">
@@ -40,7 +40,7 @@
               </form>
             </div>
             <div [hidden]="!isLogin">
-              <form name="loginForm" (ngSubmit)="login()" style="margin-top:30px;margin-bottom: 30px;" novalidate>
+              <form name="loginForm" (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
 
                 <div>
 
