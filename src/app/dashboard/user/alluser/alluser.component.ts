@@ -22,7 +22,7 @@ export class AlluserComponent implements OnInit {
     this.userService.deleteUser(user).subscribe(response => {
       alert('Deleted successfully!!');
       console.log(response);
-      ngOnInit();
+      this.ngOnInit();
     });
   }
   ngOnInit() {
