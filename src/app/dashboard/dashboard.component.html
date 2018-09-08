@@ -48,7 +48,7 @@
           <li><a routerLink="/issuedBooks">Issued Books Log</a></li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="role=='admin'">
         <a class="linkcollapse dropdown-toggle" id="AlluserHomelink" data-toggle="collapse" aria-expanded="false">
           <i class="fa fa-user"></i>
           Users

@@ -16,7 +16,7 @@
           </div>
           <div class="card-body">
             <div [hidden]="isLogin">
-              <form name="loginForm"  (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
+              <form name="loginForm" (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
 
                 <div>
                   <input type="text" name="username" class="form-control input-lg" [(ngModel)]="model.username" placeholder="Username">
@@ -31,16 +31,17 @@
 
                 <div style="margin-top: 35px">
 
-                  <button type="submit" class=" form-control btn-primary btn" style="color: white;font-size: 12pt;background-color: #00bfe8">LOG IN</button>
+                  <button type="submit" class=" form-control btn-primary btn" style="color: white;font-size: 12pt;background-color: #00bfe8">LOG
+                    IN</button>
 
                 </div>
                 <div style="margin-top: 25px">
-                  <a class ='btn' (click)="forgot()" style="color: white">Forgot Password</a>
+                  <a class='btn' (click)="forgot()" style="color: white">Forgot Password</a>
                 </div>
               </form>
             </div>
             <div [hidden]="!isLogin">
-              <form name="loginForm" (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
+              <form name="loginForm" (ngSubmit)="reset()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
 
                 <div>
 
@@ -50,7 +51,8 @@
 
                 <div style="margin-top: 35px">
 
-                  <button type="submit" class=" form-control btn-primary btn " style="color: white;font-size: 12pt;background-color: #00bfe8">RESET </button>
+                  <button type="submit" class=" form-control btn-primary btn " style="color: white;font-size: 12pt;background-color: #00bfe8">RESET
+                    </button>
 
                 </div>
               </form>

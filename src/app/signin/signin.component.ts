@@ -33,4 +33,7 @@ export class SigninComponent implements OnInit {
     this.isLogin = true;
     // alert('clicked')
   }
+  reset(): void {
+    this.isLogin = false;
+  }
 }

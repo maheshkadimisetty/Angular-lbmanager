@@ -9,7 +9,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 })
 export class DashboardComponent implements OnInit {
 
-
+  role=localStorage.getItem('role');
   constructor(private router: Router) { }
   public username: string;
   ngOnInit() {

@@ -3,17 +3,21 @@
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from './dashboard.component';
-import {HomeComponent} from './home/home.component';
-import {AboutComponent} from './about/about.component'
+import { DashboardComponent } from './dashboard.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import {RoleGuardService as RoleGuard
+} from '../auth/role-guard.service';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    children: [{ path: '', redirectTo: 'home', pathMatch: 'full' },
-      {  path: 'home',
-        component:HomeComponent
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'home',
+        component: HomeComponent
       },
       {
         path: 'member',
@@ -25,11 +29,15 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: './user/user.module#UserModule'
+        loadChildren: './user/user.module#UserModule',
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 'admin'
+        }
       },
       {
         path: 'about',
-        component:AboutComponent
+        component: AboutComponent
       }
     ]
   }
@@ -39,5 +47,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
-
+export class DashboardRoutingModule {}
