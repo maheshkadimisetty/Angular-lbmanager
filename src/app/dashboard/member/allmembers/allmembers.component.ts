@@ -47,6 +47,12 @@ export class AllmembersComponent implements OnInit {
     });
   }
   updateMember(member): void {
+    this.memberService.updateMember(member).subscribe(response => {
+      //   // alert("login successfully!!");
+      console.log(response);
+      alert('Updated successfully!!');
+      this.ngOnInit();
+    });
   }
   ngOnInit() {
     this.memberService.allMembers().subscribe(response => {

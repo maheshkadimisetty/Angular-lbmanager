@@ -34,4 +34,13 @@ export class MemberService {
     };
     return  this.httpClient.post(`https://lbmanager-node.herokuapp.com/api/member/delete`, Member, httpOptions);
   }
+  updateMember(Member) {
+    const token = localStorage.getItem('access-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token':  token
+      })
+    };
+    return  this.httpClient.post(`https://lbmanager-node.herokuapp.com/api/member/update`, Member, httpOptions);
+  }
 }
