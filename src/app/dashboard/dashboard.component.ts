@@ -8,35 +8,34 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  role=localStorage.getItem('role');
-  constructor(private router: Router) { }
+  role = localStorage.getItem('role');
+  constructor(private router: Router) {}
   public username: string;
   ngOnInit() {
-     this.username = localStorage.getItem('username');
+    this.username = localStorage.getItem('username');
     // alert(username);
-    $(document).ready(function () {
+    $(document).ready(function() {
       $('#pageSubmenu').toggle();
       $('#pageSubmenu1').toggle();
       $('#userSubmenu').toggle();
       $('#pageSubmenu2').toggle();
       // $('#usrmenu').toggle();
-      $('#sidebarCollapse').on('click', function () {
+      $('#sidebarCollapse').on('click', function() {
         $('#sidebar').toggleClass('active');
       });
-      $('#bookHomelink').on('click', function () {
+      $('#bookHomelink').on('click', function() {
         $('#pageSubmenu').toggle();
       });
-      $('#memberHomelink').on('click', function () {
+      $('#memberHomelink').on('click', function() {
         $('#pageSubmenu1').toggle();
       });
-      $('#userHomeLink').on('click', function () {
+      $('#userHomeLink').on('click', function() {
         $('#userSubmenu').toggle();
       });
-      $('#AlluserHomelink').on('click', function () {
+      $('#AlluserHomelink').on('click', function() {
         $('#pageSubmenu2').toggle();
       });
-      $('#usrmenu').on('click', function () {
+      $('#usrmenu').on('click', function() {
         $('#usermenu').toggle();
       });
     });

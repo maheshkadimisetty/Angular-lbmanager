@@ -9,6 +9,7 @@ import { SignInService } from './signin/signin.service';
 import { FilterPipe } from './dashboard/filter.pipe';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RoleGuardService } from './auth/role-guard.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter() {
   return localStorage.getItem('access-token');
@@ -19,6 +20,7 @@ export function tokenGetter() {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {

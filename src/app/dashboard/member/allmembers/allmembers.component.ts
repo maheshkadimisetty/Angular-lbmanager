@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../service/member.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FilterPipe } from '../../filter.pipe';
 @Component({
   selector: 'app-allmembers',
@@ -7,12 +8,33 @@ import { FilterPipe } from '../../filter.pipe';
   styleUrls: ['./allmembers.component.css']
 })
 export class AllmembersComponent implements OnInit {
-  constructor(private memberService: MemberService) {}
-
+  constructor(private memberService: MemberService, private modalService: NgbModal) {}
+  closeResult: string;
   searchText: string;
   public username: string;
   members: any = [];
-  // member: any;
+  member: any;
+  open(content, member) {
+    this.member = member;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      result => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      reason => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
   delete(member): void {
      alert(member);
@@ -24,7 +46,8 @@ export class AllmembersComponent implements OnInit {
       this.ngOnInit();
     });
   }
-  editMember() {}
+  updateMember(member): void {
+  }
   ngOnInit() {
     this.memberService.allMembers().subscribe(response => {
       console.log(response);
