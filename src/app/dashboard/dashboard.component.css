@@ -269,3 +269,11 @@ a.article, a.article:hover {
 .usermenu{
   padding: 3px;
 }
+th{
+  margin: 2px;
+  color: white;
+}
+thead{
+  background-color: #7386D5;
+
+}

@@ -1,0 +1,53 @@
+<div class="col-md-12">
+  <h3 style="padding-left: 10px">Issued Books Log</h3>
+  <div class="card" style="margin: 10px; border-radius: 10px">
+    <div class="card-header">
+      <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
+        <input type="text" class="form-control" ng-model="searchText" placeholder="search">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table table-responsive ">
+        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover ">
+          <thead>
+            <tr>
+              <th class="id" ng-click="sort_by('bookId')">Book Issue ID
+                <i class="glyphicon pull-right" ng-class="getIcon('bookId')"></i>
+              </th>
+              <th class="name" ng-click="sort_by('bookName')">Book ID
+                <i class="glyphicon pull-right" ng-class="getIcon('bookName')"></i>
+              </th>
+              <th class="description" ng-click="sort_by('department')">Member ID
+                <i class="glyphicon pull-right" ng-class="getIcon('department')"></i>
+              </th>
+              <th class="author" ng-click="sort_by('author')">Issued By
+                <i class="glyphicon pull-right" ng-class="getIcon('author')"></i>
+              </th>
+              <th class="field3" ng-click="sort_by('availableDate')">Issue Date
+                <i class="glyphicon pull-right" ng-class="getIcon('availableDate')"></i>
+              </th>
+              <th class="field4" ng-click="sort_by('isAvailable')">Return Date
+                <i class="glyphicon pull-right" ng-class="getIcon('isAvailable')"></i>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of ibooks">
+              <td>{{book.bookIssueId}}</td>
+              <td>{{book.bookId}}</td>
+              <td>{{book.memberId }}</td>
+              <td>{{book.issuedBy }}</td>
+              <td>{{book.issuedDate | date }}</td>
+              <td>{{book.returnDate | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

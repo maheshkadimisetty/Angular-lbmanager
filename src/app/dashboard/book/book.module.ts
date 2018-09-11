@@ -5,6 +5,7 @@ import { BookRoutingModule } from './book-routing.module';
 import {AllbooksComponent} from './allbooks/allbooks.component';
 import { BookComponent } from './book.component';
 import { AddbookComponent } from './addbook/addbook.component';
+import { IssuedBookLogComponent } from './issued-book-log/issued-book-log.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { AddbookComponent } from './addbook/addbook.component';
     FormsModule,
     BookRoutingModule
   ],
-  declarations: [AllbooksComponent, BookComponent, AddbookComponent]
+  declarations: [AllbooksComponent, BookComponent, AddbookComponent, IssuedBookLogComponent]
 })
 export class BookModule { }
 
