@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../service/user.service';
+import { FilterdataPipe } from '../../filter.pipe';
 
 @Component({
   selector: 'app-alluser',
@@ -12,6 +13,7 @@ export class AlluserComponent implements OnInit {
   constructor(private userService: UserService, private modalService: NgbModal) {}
 
   public username: string;
+  public searchText: string;
   users: any = [];
   user: any;
 

@@ -3,7 +3,7 @@
   <div class="card" style="margin: 10px; border-radius: 10px">
     <div class="card-header">
       <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
-        <input type="text" class="form-control" ng-model="searchText" placeholder="search">
+        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="search">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2">
             <i class="fa fa-search"></i>
@@ -32,7 +32,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users | filterdata: searchText : 'username' ; let i = index ">
               <td>{{user.username }}</td>
               <td>{{user.email }}</td>
               <td>{{user.role }}</td>
@@ -56,7 +56,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="updateUserForm" name="updateUserForm" (ngSubmit)="updateUser(user)" (ngSubmit)="modal.dismiss('Cross click')" novalidate>
+          <form id="updateUserForm" name="updateUserForm" (ngSubmit)="updateUser(user)" (ngSubmit)="modal.dismiss('Cross click')"
+            novalidate>
             <div class="form-group">
               <label>User Name:</label>
 
@@ -64,7 +65,8 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"></span>
                 </div>
-                <input [disabled]="'true'" type="text" name="username" class="form-control" [(ngModel)]="user.username" required>
+                <input [disabled]="'true'" type="text" name="username" class="form-control" [(ngModel)]="user.username"
+                  required>
               </div>
 
               <!-- /.input group -->
@@ -88,7 +90,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"></span>
                 </div>
-                <select  name="role" class="form-control" [(ngModel)]="user.role" required>
+                <select name="role" class="form-control" [(ngModel)]="user.role" required>
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>
@@ -102,11 +104,12 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"></span>
                 </div>
-                <input type="text" [disabled]="'true'" name="fine" class="form-control" [(ngModel)]="user.fine" required>
+                <input type="text" [disabled]="'true'" name="fine" class="form-control" [(ngModel)]="user.fine"
+                  required>
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-block btn-success" >Submit</button>
+              <button type="submit" class="btn btn-block btn-success">Submit</button>
             </div>
           </form>
         </div>

@@ -1,17 +1,16 @@
-/**
- * Created by Mahesh on 15-08-2018.
- */
 import { Pipe, PipeTransform } from '@angular/core';
+
 @Pipe({
-  name: 'filter'
+  name: 'filterdata'
 })
-export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: string): any[] {
-    if(!items) return [];
-    if(!searchText) return items;
-    searchText = searchText.toLowerCase();
-    return items.filter( it => {
-      return it.toLowerCase().includes(searchText);
-    });
+export class FilterdataPipe implements PipeTransform {
+
+  transform(items: any[], value: string, label: string): any[] {
+    if (!items) { return []; }
+    if (!value) {return  items; }
+    if (value === '' || value === null) { return []; }
+    return items.filter(e => e[label].toLowerCase().indexOf(value) > -1 );
+
   }
+
 }

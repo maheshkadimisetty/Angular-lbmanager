@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FilterPipe } from '../../filter.pipe';
 
 @Component({
   selector: 'app-allbooks',

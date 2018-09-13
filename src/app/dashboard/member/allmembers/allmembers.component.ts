@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../service/member.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FilterPipe } from '../../filter.pipe';
 @Component({
   selector: 'app-allmembers',
   templateUrl: './allmembers.component.html',

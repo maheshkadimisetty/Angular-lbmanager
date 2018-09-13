@@ -5,6 +5,7 @@ import { MemberRoutingModule } from './member-routing.module';
 import { AllmembersComponent } from './allmembers/allmembers.component';
 import { MemberComponent } from './member.component';
 import { CreatememberComponent } from './createmember/createmember.component';
+import { ViewMemberComponent } from './view-member/view-member.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { CreatememberComponent } from './createmember/createmember.component';
     MemberRoutingModule,
     FormsModule
   ],
-  declarations: [AllmembersComponent, MemberComponent, CreatememberComponent]
+  declarations: [AllmembersComponent, MemberComponent, CreatememberComponent, ViewMemberComponent]
 })
 export class MemberModule { }
