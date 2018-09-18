@@ -1,3 +1,13 @@
 .card-body{
   min-height: 400px;
 }
+td{
+  padding: 5px;
+}
+th{
+  margin: 2px;
+  color: white;
+}
+thead{
+  background-color: rgb(143, 160, 226);
+}

@@ -34,9 +34,9 @@
           <tr *ngFor="let member of members">
             <!--<tr *ngFor="let member of members | filter : searchText">-->
             <td>{{member.memberId}}</td>
-            <td>{{member.firstName }}</td>
-            <td>{{member.lastName }}</td>
-            <td>{{member.pin }}</td>
+            <td>{{member.firstName |titlecase }}</td>
+            <td>{{member.lastName |titlecase }}</td>
+            <td>{{member.pin |uppercase }}</td>
             <td>{{member.joinDate | date }}</td>
             <td>{{member.email}}</td>
             <td>{{member.gender}}</td>

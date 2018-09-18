@@ -12,7 +12,214 @@
       </div>
     </div>
     <div class="card-body">
+      <div *ngIf="showMe">
+        <table class="table-responsive" style="border: none">
+          <tbody>
+            <thead>
+            </thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><span><button>Hai</button></span>
+                <span><button>Hello</button></span>
+              </td>
+            </tr>
+            <tr>
+              <td>Member Id</td>
+              <td>:</td>
+              <td>{{members.memberId}}</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>:</td>
+              <td>{{members.firstName |titlecase }}{{members.lastName |titlecase }}</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>:</td>
+              <td>{{members.gender}}</td>
+            </tr>
+            <tr>
+              <td>DOB</td>
+              <td>:</td>
+              <td>{{members.dob | date}}</td>
+            </tr>
+            <tr>
+              <td>PIN</td>
+              <td>:</td>
+              <td>{{members.pin | uppercase }}</td>
+            </tr>
+            <tr>
+              <td>Email Id</td>
+              <td>:</td>
+              <td>{{members.email}}</td>
+            </tr>
+            <tr>
+              <td>Department</td>
+              <td>:</td>
+              <td>{{members.department}}</td>
+            </tr>
+            <tr>
+              <td>Member Type</td>
+              <td>:</td>
+              <td>{{members.membertype}}</td>
+            </tr>
+            <tr>
+              <td>Join Date</td>
+              <td>:</td>
+              <td>{{members.joinDate}}</td>
+            </tr>
+            <tr>
+              <td>Book Limit</td>
+              <td>:</td>
+              <td>{{members.bookLimit}}</td>
+            </tr>
+            <tr>
+              <td>Fine</td>
+              <td>:</td>
+              <td>{{members.fine}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div  class="table table-responsive" style="margin-top: 20px">
+            <table class="table table-bordered   table-condensed table-hover table-responsive">
+                <thead>
+                <tr style="width: 50px">
+                    <th>Book Issue ID</th>
+                    <th>Book ID</th>
+                    <th>Book Name</th>
+                    <th>Department</th>
+                    <th>Issued Date</th>
+                    <th>Return Date</th>
+                    <th>Issued By</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let fechMemIssueBook of fechMemIssueBooks">
+                    <td>{{fechMemIssueBook.bookIssueId}}</td>
+                    <td>{{fechMemIssueBook.bookId}}</td>
+                    <td>{{fechMemIssueBook.book.bookName | titlecase}}</td>
+                    <td>{{fechMemIssueBook.book.department | uppercase}}</td>
+                    <td>{{fechMemIssueBook.issuedDate | date}}</td>
+                    <td>{{fechMemIssueBook.returnDate | date}}</td>
+                    <td>{{fechMemIssueBook.issuedBy |titlecase}}</td>
+                    <td><button class="btn btn-warning btn-sm" style="margin: 5px" ng-click='returnBook(fechMemIssueBook.bookIssueId)'>Return Book</button></td>
+                </tr>
+                </tbody>
+                <!-- <tfoot ng-if="fechMemIssueBooks.length==0">
+                 <td colspan="8" style="text-align: center"><h4>No Books Issued to this Member</h4></td>
+                </tfoot> -->
+            </table>
+        </div>
+        <!-- <div class="col-md-9 col-md-offset-1 col-sm-11 table-responsive" style="margin-top: 20px">
 
+              <table class="table-responsive" style="border: none">
+                  <tbody>
+                  <thead>
+              <strong class="memberlist"><h3>Member Information</h3></strong><br>
+              <button class="btn btn-danger btn-sm pull-right" style="margin: 5px" ng-click='delete(members)' ng-if="edit">Delete</button>
+              <button class="btn btn-primary btn-sm pull-right" style="margin: 5px" ng-click='editMember(members)' ng-if="edit">Edit</button>
+              <button class="btn btn-warning btn-sm pull-right" style="margin: 5px" ng-click='back(members)' ng-if="!edit">Back</button>
+              <button class="btn btn-primary btn-sm pull-right" style="margin: 5px" ng-click='updateMember()' ng-if="!edit">Update</button>
+                  </thead>
+                  <tr class="memberlist">
+                      <td><strong>Member Id </strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td>{{members.memberId}}</td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Name </strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.firstName | capitalize}}</span>
+                          <span ng-if="!edit"><input type="text" name="memberName" class="form-control"  ng-model="members1.firstName"></span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Pin</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.pin | uppercase}}</span>
+                          <span ng-if="!edit"><input type="text" name="pin" class="form-control"  ng-model="members1.pin"></span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Gender</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.gender}}</span>
+                          <span ng-if="!edit"> <label class="radio-inline">
+                              <input type="radio" name="gender" checked="checked" ng-model="members1.gender" value="Male" required> Male
+                          </label>
+                          <label class="radio-inline">
+                              <input type="radio" name="gender"  ng-model="members1.gender" value="Female" required> Female
+                          </label></span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>DOB</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.dob | date:'dd MMM yyyy'}}</span>
+                          <span ng-if="!edit" class="input-group ">
+                          <input type="text" name="dob" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="members1.dob" is-open="opened" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" required />
+                              <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                          </span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Email ID</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.email}}</span>
+                          <span ng-if="!edit"><input type="email" name="email" class="form-control"  ng-model="members1.email"></span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Department</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.department | capitalize}}</span>
+                          <span ng-if="!edit">
+                              <select name="department" class="form-control" ng-model="fechBookobj1.department" required>
+                                  <option value="ECE">ECE</option>
+                                  <option value="EEE">EEE</option>
+                                  <option value="CSE">CSE</option>
+                                  <option value="MECH">MECH</option>
+                                  <option value="CIVIL">CIVIL</option>
+                                  <option value="MCA">MCA</option>
+                                  <option value="MBA">MBA</option>
+                              </select>
+                          </span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Member Type</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td>{{members.membertype | capitalize}}</td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Join Date</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.joinDate | date:'dd MMM yyyy'}}</span>
+                          <span ng-if="!edit">{{members1.joinDate | date:'dd MMM yyyy'}}</span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Book Limit</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td><span ng-if="edit">{{members.bookLimit}}</span>
+                          <span ng-if="!edit">{{members1.bookLimit}}</span>
+                      </td>
+                  </tr>
+                  <tr class="memberlist">
+                      <td><strong>Fine</strong></td>
+                      <td><strong>&nbsp;&nbsp;:&nbsp;&nbsp;</strong></td>
+                      <td>{{members.fine}}</td>
+                      <td>&emsp;<button class="btn btn-primary btn-sm pull-right" ng-disabled="members.fine==0" style="margin: 5px; margin-left:350px" ng-click='payFine()'>Pay Fine</button></td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div> -->
+      </div>
     </div>
   </div>
 </div>
