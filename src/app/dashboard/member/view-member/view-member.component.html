@@ -1,9 +1,9 @@
 <div class="col-md-12">
-  <h3 style="padding-left: 10px">View Member</h3>
+  <h5 style="padding-left: 10px">View Member</h5>
   <div class="card" style="margin: 10px; border-radius: 10px">
     <div class="card-header">
       <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
-        <input type="text" class="form-control" [(ngModel)]="memberId" placeholder="Ex M1001">
+        <input type="text" class="form-control" [(ngModel)]="memberId"  placeholder="Ex M1001">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2">
             <i class="fa fa-search" (click)='viewmember(memberId)'></i>
@@ -18,11 +18,10 @@
             <thead>
             </thead>
             <tr>
+              <td colspan="2"><h6>Member Information</h6></td>
               <td></td>
-              <td></td>
-              <td></td>
-              <td><span><button>Hai</button></span>
-                <span><button>Hello</button></span>
+              <td><span><button class="btn-primary btn btn-sm edit">Edit</button></span>
+                <span><button class="btn-danger btn btn-sm edit">Delete</button></span>
               </td>
             </tr>
             <tr>
@@ -68,7 +67,7 @@
             <tr>
               <td>Join Date</td>
               <td>:</td>
-              <td>{{members.joinDate}}</td>
+              <td>{{members.joinDate | date}}</td>
             </tr>
             <tr>
               <td>Book Limit</td>
@@ -79,39 +78,201 @@
               <td>Fine</td>
               <td>:</td>
               <td>{{members.fine}}</td>
+              <td><span><button class="btn-primary btn btn-sm" (click)='open(content,members)'>Pay Fine</button></span></td>
             </tr>
           </tbody>
         </table>
-        <div  class="table table-responsive" style="margin-top: 20px">
-            <table class="table table-bordered   table-condensed table-hover table-responsive">
-                <thead>
-                <tr style="width: 50px">
-                    <th>Book Issue ID</th>
-                    <th>Book ID</th>
-                    <th>Book Name</th>
-                    <th>Department</th>
-                    <th>Issued Date</th>
-                    <th>Return Date</th>
-                    <th>Issued By</th>
-                    <th></th>
-                </tr>
-                </thead>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-basic-title">Pay Fine</h5>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <table class="table-responsive" style="border: none">
+                <thead></thead>
                 <tbody>
-                <tr *ngFor="let fechMemIssueBook of fechMemIssueBooks">
-                    <td>{{fechMemIssueBook.bookIssueId}}</td>
-                    <td>{{fechMemIssueBook.bookId}}</td>
-                    <td>{{fechMemIssueBook.book.bookName | titlecase}}</td>
-                    <td>{{fechMemIssueBook.book.department | uppercase}}</td>
-                    <td>{{fechMemIssueBook.issuedDate | date}}</td>
-                    <td>{{fechMemIssueBook.returnDate | date}}</td>
-                    <td>{{fechMemIssueBook.issuedBy |titlecase}}</td>
-                    <td><button class="btn btn-warning btn-sm" style="margin: 5px" ng-click='returnBook(fechMemIssueBook.bookIssueId)'>Return Book</button></td>
-                </tr>
+                    <tr>
+                        <td>Member Id</td>
+                        <td>:</td>
+                        <td>{{members.memberId}}</td>
+                      </tr>
+                      <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td>{{members.firstName |titlecase }}{{members.lastName |titlecase }}</td>
+                      </tr>
+                      <tr>
+                        <td>PIN</td>
+                        <td>:</td>
+                        <td>{{members.pin | uppercase }}</td>
+                      </tr>
+                      <tr>
+                        <td>Fine</td>
+                        <td>:</td>
+                        <td>{{members.fine}}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Pay Fine</td>
+                        <td>:</td>
+                        <td><input type="number" class="form-control" [(ngModel)]="payingfine" required></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td><button class="btn btn-success btn-sm" (click)="modal.dismiss('Cross click')" (click)="payFine(memberId,payingfine)">Submit</button></td>
+                        <td><button class="btn btn-danger btn-sm" (click)="modal.dismiss('Cross click')">Close</button></td>
+                      </tr>
                 </tbody>
-                <!-- <tfoot ng-if="fechMemIssueBooks.length==0">
-                 <td colspan="8" style="text-align: center"><h4>No Books Issued to this Member</h4></td>
-                </tfoot> -->
-            </table>
+              </table>
+            <!-- <form id="updateMemberForm" name="updateMemberForm" (ngSubmit)="updateMember(member)" (ngSubmit)="modal.dismiss('Cross click')"
+              novalidate>
+              <div class="form-group ">
+                <label>Member ID:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input [disabled]="'true'" type="text" name="memberId" class="form-control" [(ngModel)]="member.memberId" required>
+                </div>
+              </div>
+              <div class="form-group ">
+                <label>First Name:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input type="text" name="firstName" class="form-control" [(ngModel)]="member.firstName" required>
+                </div>
+              </div>
+              <div class="form-group ">
+                <label>Last Name:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input type="text" name="lastName" class="form-control" [(ngModel)]="member.lastName" required>
+
+                </div>
+
+              </div>
+              <div class="form-group ">
+                <label>PIN:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input type="text" name="pin" class="form-control" [(ngModel)]="member.pin" required>
+
+                </div>
+              </div>
+              <div class="form-group ">
+                <label> DOB:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input type="date" name="date" class="form-control" [(ngModel)]="member.dob" required>
+                </div>
+              </div>
+              <div class="form-group ">
+                <label>Email ID:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input type="email" name="email" class="form-control" [(ngModel)]="member.email" required>
+
+                </div>
+              </div>
+              <div class="form-group ">
+                <label>Gender:</label>
+                <div class="input-group ">
+                  <label class="radio-inline">
+                    <input type="radio" name="gender" checked="checked" [(ngModel)]="member.gender" value="Male" required> Male
+                  </label>
+                  <label class="radio-inline" style="padding-left: 10px">
+                    <input type="radio" name="gender" [(ngModel)]="member.gender" value="Female" required> Female
+                  </label>
+                </div>
+              </div>
+              <div class="form-group ">
+                <label>Department:</label>
+
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select name="department" class="form-control" [(ngModel)]="member.department" required>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="CSE">CSE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group ">
+                <label>Member Type:</label>
+
+                <div class="input-group ">
+                  <label class="radio-inline">
+                    <input type="radio" name="membertype" checked="checked" value="Student" [(ngModel)]="member.membertype" required>                Student
+                  </label>
+                  <label class="radio-inline" style="padding-left: 10px">
+                    <input type="radio" name="membertype" value="Faculty" [(ngModel)]="member.membertype"> Facaulty
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-block btn-success">Submit</button>
+              </div>
+            </form> -->
+          </div>
+        </ng-template>
+        <div class="table table-responsive" style="margin-top: 20px">
+          <table class="table table-bordered   table-condensed table-hover table-responsive">
+            <thead>
+              <tr style="width: 50px">
+                <th>Book Issue ID</th>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Department</th>
+                <th>Issued Date</th>
+                <th>Return Date</th>
+                <th>Issued By</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let fechMemIssueBook of fechMemIssueBooks">
+                <td>{{fechMemIssueBook.bookIssueId}}</td>
+                <td>{{fechMemIssueBook.bookId}}</td>
+                <td>{{fechMemIssueBook.book.bookName | titlecase}}</td>
+                <td>{{fechMemIssueBook.book.department | uppercase}}</td>
+                <td>{{fechMemIssueBook.issuedDate | date}}</td>
+                <td>{{fechMemIssueBook.returnDate | date}}</td>
+                <td>{{fechMemIssueBook.issuedBy |titlecase}}</td>
+                <td><button class="btn btn-warning btn-sm" style="margin: 5px" ng-click='returnBook(fechMemIssueBook.bookIssueId)'>Return
+                    Book</button></td>
+              </tr>
+            </tbody>
+            <tfoot *ngIf="fechMemIssueBooks.length==0">
+              <td colspan="8" style="text-align: center">
+                <h5>No Books Issued to this Member</h5>
+              </td>
+            </tfoot>
+          </table>
         </div>
         <!-- <div class="col-md-9 col-md-offset-1 col-sm-11 table-responsive" style="margin-top: 20px">
 

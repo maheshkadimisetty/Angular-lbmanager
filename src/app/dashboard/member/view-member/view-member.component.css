@@ -11,3 +11,10 @@ th{
 thead{
   background-color: rgb(143, 160, 226);
 }
+button{
+  color: #fff;
+}
+.edit{
+display:inline-block;
+margin: 5px;
+}
