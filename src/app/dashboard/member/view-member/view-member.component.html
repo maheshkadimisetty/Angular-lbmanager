@@ -3,7 +3,7 @@
   <div class="card" style="margin: 10px; border-radius: 10px">
     <div class="card-header">
       <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
-        <input type="text" class="form-control" [(ngModel)]="memberId"  placeholder="Ex M1001">
+        <input type="text" class="form-control" [(ngModel)]="memberId" placeholder="Ex M1001">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2">
             <i class="fa fa-search" (click)='viewmember(memberId)'></i>
@@ -18,10 +18,14 @@
             <thead>
             </thead>
             <tr>
-              <td colspan="2"><h6>Member Information</h6></td>
+              <td colspan="2">
+                <h6>Member Information</h6>
+              </td>
               <td></td>
-              <td><span><button class="btn-primary btn btn-sm edit">Edit</button></span>
-                <span><button class="btn-danger btn btn-sm edit">Delete</button></span>
+              <td><span><button class="btn-primary btn btn-sm edit" *ngIf="edit" (click)='edit=false'>Edit</button></span>
+                <span><button class="btn-danger btn btn-sm edit" *ngIf="edit" (click)='delete(members)'>Delete</button></span>
+                <span><button class="btn-primary btn btn-sm edit" *ngIf="!edit" (click)='Update(members)'>Update</button></span>
+                <span><button class="btn-warning btn btn-sm edit" *ngIf="!edit" (click)='edit=true'>Back</button></span>
               </td>
             </tr>
             <tr>
@@ -32,37 +36,73 @@
             <tr>
               <td>Name</td>
               <td>:</td>
-              <td>{{members.firstName |titlecase }}{{members.lastName |titlecase }}</td>
+              <td><span *ngIf="edit">{{members.firstName |titlecase }}{{members.lastName |titlecase }}</span>
+                <span *ngIf="!edit"><input type="text" name="firstName" class="form-control" [(ngModel)]="members.firstName"
+                    required></span>
+              </td>
             </tr>
             <tr>
               <td>Gender</td>
               <td>:</td>
-              <td>{{members.gender}}</td>
+              <td><span *ngIf="edit">{{members.gender}}</span>
+                <span *ngIf="!edit"><label class="radio-inline">
+                    <input type="radio" name="gender" [(ngModel)]="members.gender" value="Male" required> Male
+                  </label>
+                  <label class="radio-inline" style="padding-left: 10px">
+                    <input type="radio" name="gender" [(ngModel)]="members.gender" value="Female" required> Female
+                  </label></span>
+              </td>
             </tr>
             <tr>
               <td>DOB</td>
               <td>:</td>
-              <td>{{members.dob | date}}</td>
+              <td><span *ngIf="edit">{{members.dob | date}}</span>
+                <span *ngIf="!edit"><input type="date" name="date" class="form-control" [(ngModel)]="members.dob"
+                    required></span>
+              </td>
             </tr>
             <tr>
               <td>PIN</td>
               <td>:</td>
-              <td>{{members.pin | uppercase }}</td>
+              <td><span *ngIf="edit">{{members.pin | uppercase }}</span>
+                <span *ngIf="!edit"><input type="text" name="pin" class="form-control" [(ngModel)]="members.pin"
+                    required></span>
+              </td>
             </tr>
             <tr>
               <td>Email Id</td>
               <td>:</td>
-              <td>{{members.email}}</td>
+              <td><span *ngIf="edit">{{members.email}}</span>
+                <span *ngIf="!edit"><input type="email" name="email" class="form-control" [(ngModel)]="members.email"
+                    required></span>
+              </td>
             </tr>
             <tr>
               <td>Department</td>
               <td>:</td>
-              <td>{{members.department}}</td>
+              <td><span *ngIf="edit">{{members.department}}</span>
+                <span *ngIf="!edit"> <select name="department" class="form-control" [(ngModel)]="members.department"
+                    required>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="CSE">CSE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                  </select></span></td>
             </tr>
             <tr>
               <td>Member Type</td>
               <td>:</td>
-              <td>{{members.membertype}}</td>
+              <td><span *ngIf="edit">{{members.membertype}}</span>
+                <span *ngIf="!edit"><label class="radio-inline">
+                    <input type="radio" name="membertype" value="Student" [(ngModel)]="members.membertype" required>
+                    Student
+                  </label>
+                  <label class="radio-inline" style="padding-left: 10px">
+                    <input type="radio" name="membertype" value="Faculty" [(ngModel)]="members.membertype"> Facaulty
+                  </label></span></td>
             </tr>
             <tr>
               <td>Join Date</td>
@@ -90,43 +130,43 @@
             </button>
           </div>
           <div class="modal-body">
-              <table class="table-responsive" style="border: none">
-                <thead></thead>
-                <tbody>
-                    <tr>
-                        <td>Member Id</td>
-                        <td>:</td>
-                        <td>{{members.memberId}}</td>
-                      </tr>
-                      <tr>
-                        <td>Name</td>
-                        <td>:</td>
-                        <td>{{members.firstName |titlecase }}{{members.lastName |titlecase }}</td>
-                      </tr>
-                      <tr>
-                        <td>PIN</td>
-                        <td>:</td>
-                        <td>{{members.pin | uppercase }}</td>
-                      </tr>
-                      <tr>
-                        <td>Fine</td>
-                        <td>:</td>
-                        <td>{{members.fine}}</td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>Pay Fine</td>
-                        <td>:</td>
-                        <td><input type="number" class="form-control" [(ngModel)]="payingfine" required></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td><button class="btn btn-success btn-sm" (click)="modal.dismiss('Cross click')" (click)="payFine(memberId,payingfine)">Submit</button></td>
-                        <td><button class="btn btn-danger btn-sm" (click)="modal.dismiss('Cross click')">Close</button></td>
-                      </tr>
-                </tbody>
-              </table>
+            <table class="table-responsive" style="border: none">
+              <thead></thead>
+              <tbody>
+                <tr>
+                  <td>Member Id</td>
+                  <td>:</td>
+                  <td>{{members.memberId}}</td>
+                </tr>
+                <tr>
+                  <td>Name</td>
+                  <td>:</td>
+                  <td>{{members.firstName |titlecase }}{{members.lastName |titlecase }}</td>
+                </tr>
+                <tr>
+                  <td>PIN</td>
+                  <td>:</td>
+                  <td>{{members.pin | uppercase }}</td>
+                </tr>
+                <tr>
+                  <td>Fine</td>
+                  <td>:</td>
+                  <td>{{members.fine}}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Pay Fine</td>
+                  <td>:</td>
+                  <td><input type="number" class="form-control" [(ngModel)]="payingfine" required></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td><button class="btn btn-success btn-sm" (click)="modal.dismiss('Cross click')" (click)="payFine(memberId,payingfine)">Submit</button></td>
+                  <td><button class="btn btn-danger btn-sm" (click)="modal.dismiss('Cross click')">Close</button></td>
+                </tr>
+              </tbody>
+            </table>
             <!-- <form id="updateMemberForm" name="updateMemberForm" (ngSubmit)="updateMember(member)" (ngSubmit)="modal.dismiss('Cross click')"
               novalidate>
               <div class="form-group ">

@@ -13,6 +13,7 @@ export class ViewMemberComponent implements OnInit {
   members: any = [];
   fechMemIssueBooks: any = [];
   showMe = false;
+  edit = true;
   payingfine: number;
   constructor(private memberService: MemberService, private modalService: NgbModal) {}
   viewmember(memberId): void {
@@ -51,6 +52,20 @@ export class ViewMemberComponent implements OnInit {
     this.memberService.payFine(obj).subscribe(response => {
       console.log(response);
       this.viewmember(memberId);
+    });
+  }
+  delete(members): void {
+   this.memberService.deleteMember(members).subscribe(response => {
+     console.log(response);
+     alert('Deleted successfully!!');
+   });
+  }
+  Update(members): void {
+    this.memberService.updateMember(members).subscribe(response => {
+      console.log(response);
+      alert('Updated successfully!!');
+      this.viewmember(members.memberId);
+      this.edit = true;
     });
   }
   ngOnInit() {
