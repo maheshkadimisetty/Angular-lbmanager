@@ -1,0 +1,9 @@
+td{
+  padding: 5px;
+}
+tr{
+  padding: 10px;
+}
+.card-body{
+  min-height: 400px;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MemberService } from '../service/member.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,7 +16,7 @@ export class ViewMemberComponent implements OnInit {
   showMe = false;
   edit = true;
   payingfine: number;
-  constructor(private memberService: MemberService, private modalService: NgbModal) {}
+  constructor(private router: Router, private memberService: MemberService, private modalService: NgbModal) {}
   viewmember(memberId): void {
     let obj = { memberId: memberId };
     this.memberService.fetchMember(obj).subscribe(response => {
@@ -67,6 +68,9 @@ export class ViewMemberComponent implements OnInit {
       this.viewmember(members.memberId);
       this.edit = true;
     });
+  }
+  returnBook(bookIssueId): void {
+    this.router.navigate(['dashboard/dashboard/book/returnBook']);
   }
   ngOnInit() {
     this.memberService.fetchIssuedBooks(this.memberId).subscribe(response => {

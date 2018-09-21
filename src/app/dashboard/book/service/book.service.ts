@@ -70,4 +70,30 @@ export class BookService {
       httpOptions
     );
   }
+  fetchIssuedbook(obj) {
+    const token = localStorage.getItem('access-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': token
+      })
+    };
+    return this.httpClient.post(
+      `https://lbmanager-node.herokuapp.com/api/bookIssue/fetchIssueBookDetails`,
+      obj,
+      httpOptions
+    );
+  }
+  returnbook(obj) {
+    const token = localStorage.getItem('access-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': token
+      })
+    };
+    return this.httpClient.post(
+      `https://lbmanager-node.herokuapp.com/api/bookIssue/collectBook`,
+      obj,
+      httpOptions
+    );
+  }
 }

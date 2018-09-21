@@ -1,0 +1,72 @@
+<div class="col-md-12">
+  <h5 style="padding-left: 10px">Return Book</h5>
+  <div class="card" style="margin: 10px; border-radius: 10px">
+    <div class="card-header">
+      <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
+        <input type="text" class="form-control" [(ngModel)]="bookIssueId" placeholder="Ex BI5001">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">
+            <i class="fa fa-search" (click)='fetchIssueBook(bookIssueId)'></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div *ngIf='showMe'>
+        <table class="table-responsive" style="border: none">
+          <tbody>
+            <thead>
+            </thead>
+            <tr>
+              <td colspan="2">
+                <h6>Book Information</h6>
+              </td>
+            </tr>
+            <tr>
+              <td>Member Id</td>
+              <td>:</td>
+              <td>{{member.memberId}}</td>
+            </tr>
+            <tr>
+              <td>Member Name</td>
+              <td>:</td>
+              <td>{{member.member.firstName |titlecase }}{{member.member.lastName |titlecase }}</td>
+            </tr>
+            <tr>
+              <td>Book Id</td>
+              <td>:</td>
+              <td>{{member.bookId}}</td>
+            </tr>
+            <tr>
+              <td>Book Name</td>
+              <td>:</td>
+              <td>{{member.book.bookName}}</td>
+            </tr>
+            <tr>
+              <td>Issued By Name</td>
+              <td>:</td>
+              <td>{{member.issuedBy}}</td>
+            </tr>
+            <tr>
+              <td>Issued Date</td>
+              <td>:</td>
+              <td>{{member.issuedDate | date}}</td>
+            </tr>
+            <tr>
+              <td>Return Date</td>
+              <td>:</td>
+              <td>{{member.returnDate | date}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><button class="btn-primary btn btn-sm" (click)='returnBook(member)'>Return Book</button></td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

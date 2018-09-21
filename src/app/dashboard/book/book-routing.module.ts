@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AllbooksComponent} from './allbooks/allbooks.component';
 import { AddbookComponent } from './addbook/addbook.component';
 import { IssuedBookLogComponent } from './issued-book-log/issued-book-log.component';
+import { ReturnbookComponent } from './returnbook/returnbook.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/allBooks', pathMatch: 'full' },
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'issuedBooks',
     component: IssuedBookLogComponent,
+  },
+  {
+    path: 'returnBook',
+    component: ReturnbookComponent,
   }
 ];
 
