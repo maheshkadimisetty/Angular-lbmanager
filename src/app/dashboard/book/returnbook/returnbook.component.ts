@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-returnbook',
@@ -10,7 +11,15 @@ export class ReturnbookComponent implements OnInit {
   bookIssueId: any;
   member: any = [];
   showMe = false;
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService,
+    private _route: ActivatedRoute) {
+    this._route.queryParams.subscribe(params => {
+      // console.log(params);
+      if (params.bookIssueId) {
+        this.fetchIssueBook(params.bookIssueId);
+      }
+  });
+  }
   fetchIssueBook(bookIssueId): void {
     let obj = { bookIssueId: bookIssueId };
     this.bookService.fetchIssuedbook(obj).subscribe(response => {
@@ -28,6 +37,5 @@ export class ReturnbookComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.fetchIssueBook(this.bookIssueId);
   }
 }

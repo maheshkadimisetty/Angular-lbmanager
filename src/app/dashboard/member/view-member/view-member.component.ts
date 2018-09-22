@@ -70,7 +70,9 @@ export class ViewMemberComponent implements OnInit {
     });
   }
   returnBook(bookIssueId): void {
-    this.router.navigate(['dashboard/dashboard/book/returnBook']);
+    this.router.navigate(['dashboard/dashboard/book/returnBook'], {
+      queryParams: { bookIssueId: bookIssueId }
+    });
   }
   ngOnInit() {
     this.memberService.fetchIssuedBooks(this.memberId).subscribe(response => {
