@@ -8,6 +8,7 @@ import { AddbookComponent } from './addbook/addbook.component';
 import { IssuedBookLogComponent } from './issued-book-log/issued-book-log.component';
 import { ReturnbookComponent } from './returnbook/returnbook.component';
 import { ViewBookComponent } from './view-book/view-book.component';
+import { IssueBookComponent } from './issue-book/issue-book.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/allBooks', pathMatch: 'full' },
@@ -28,9 +29,14 @@ const routes: Routes = [
     component: ReturnbookComponent,
   },
   {
+    path: 'issueBook',
+    component: IssueBookComponent,
+  },
+  {
     path: 'viewBook',
     component: ViewBookComponent,
   }
+
 ];
 
 @NgModule({

@@ -8,6 +8,7 @@ import { BookService } from '../service/book.service';
 export class ViewBookComponent implements OnInit {
   showMe = false;
   edit = true;
+  bookId: any;
   book: any = [];
   constructor( private bookService: BookService) { }
   viewbook(bookId): void {
