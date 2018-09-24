@@ -96,4 +96,17 @@ export class BookService {
       httpOptions
     );
   }
+  fetchBook(obj) {
+    const token = localStorage.getItem('access-token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-access-token': token
+      })
+    };
+    return this.httpClient.post(
+      `https://lbmanager-node.herokuapp.com/api/book/fetch`,
+      obj,
+      httpOptions
+    );
+  }
 }

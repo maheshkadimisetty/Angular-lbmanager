@@ -1,0 +1,24 @@
+.card-body{
+  min-height: 400px;
+}
+td{
+  padding: 5px;
+}
+tr{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+th{
+  margin: 2px;
+  color: white;
+}
+thead{
+  background-color: rgb(143, 160, 226);
+}
+button{
+  color: #fff;
+}
+.edit{
+display:inline-block;
+margin: 5px;
+}

@@ -1,0 +1,78 @@
+<div class="col-md-12">
+  <h5 style="padding-left: 10px">View Book</h5>
+  <div class="card" style="margin: 10px; border-radius: 10px">
+    <div class="card-header">
+      <div class="input-group col-md-3 col-sm-10" style="margin: 10px; border-radius: 10px ">
+        <input type="text" class="form-control" [(ngModel)]="bookId" placeholder="Ex B5001">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">
+            <i class="fa fa-search" (click)='viewbook(bookId)'></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div *ngIf="showMe">
+        <table class="table-responsive" style="border: none">
+          <tbody>
+            <thead>
+            </thead>
+            <tr>
+              <td colspan="2">
+                <h6>Book Information</h6>
+              </td>
+              <td></td>
+              <td><span><button class="btn-primary btn btn-sm edit" *ngIf="edit" (click)='edit=false'>Edit</button></span>
+                <span><button class="btn-danger btn btn-sm edit" *ngIf="edit" (click)='delete(book)'>Delete</button></span>
+                <span><button class="btn-primary btn btn-sm edit" *ngIf="!edit" (click)='Update(book)'>Update</button></span>
+                <span><button class="btn-warning btn btn-sm edit" *ngIf="!edit" (click)='edit=true'>Back</button></span>
+              </td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td>Book Id</td>
+              <td>:</td>
+              <td>{{book.bookId}}</td>
+            </tr>
+            <tr>
+              <td>Book Name</td>
+              <td>:</td>
+              <td><span *ngIf="edit">{{book.bookName |titlecase }}</span>
+                <span *ngIf="!edit"><input type="text" name="bookName" class="form-control" [(ngModel)]="book.bookName"
+                    required></span>
+              </td>
+            </tr>
+            <tr>
+              <td>Author</td>
+              <td>:</td>
+              <td><span *ngIf="edit">{{book.author |titlecase }}</span>
+                <span *ngIf="!edit"><input type="text" name="author" class="form-control" [(ngModel)]="book.author"
+                    required></span>
+              </td>
+            </tr>
+            <tr>
+              <td>Department</td>
+              <td>:</td>
+              <td><span *ngIf="edit">{{book.department}}</span>
+                <span *ngIf="!edit"> <select name="department" class="form-control" [(ngModel)]="book.department"
+                    required>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="CSE">CSE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                  </select></span></td>
+            </tr>
+            <tr>
+              <td>Available Date</td>
+              <td>:</td>
+              <td>{{book.availableDate | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
