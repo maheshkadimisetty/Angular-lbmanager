@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../service/member.service';
 import { Member } from './createmember';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-createmember',
@@ -8,14 +9,12 @@ import { Member } from './createmember';
   styleUrls: ['./createmember.component.css']
 })
 export class CreatememberComponent implements OnInit {
-  constructor(private memberService: MemberService) {}
+  constructor(private memberService: MemberService, private toastr: ToastrService) {}
   member = new Member('', '', '', new Date(), '', '', '', '');
   // members : any = {};
   createMember(): void {
-    alert('Created successfully!!');
-    // console.log(this.members);
     this.memberService.createMember(this.member).subscribe(response => {
-      // alert("login successfully!!");
+      this.toastr.success('Created Member successfully!!');
       console.log(response);
     });
   }

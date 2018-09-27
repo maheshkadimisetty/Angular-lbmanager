@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-returnbook',
@@ -12,7 +13,7 @@ export class ReturnbookComponent implements OnInit {
   member: any = [];
   showMe = false;
   constructor(private bookService: BookService,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute, private toastr: ToastrService) {
     this._route.queryParams.subscribe(params => {
       // console.log(params);
       if (params.bookIssueId) {
@@ -31,6 +32,7 @@ export class ReturnbookComponent implements OnInit {
   returnBook(bookIssueId): void {
     this.bookService.returnbook(bookIssueId).subscribe(response => {
       console.log(response);
+      this.toastr.success('Returned Book Sucessfully');
       //  if (response.msg === 'successfully Collected Book' ) {
       // alert('helo');
       //  }

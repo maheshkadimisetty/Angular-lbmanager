@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../service/user.service';
 import { FilterdataPipe } from '../../filter.pipe';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-alluser',
@@ -10,7 +11,7 @@ import { FilterdataPipe } from '../../filter.pipe';
 })
 export class AlluserComponent implements OnInit {
   closeResult: string;
-  constructor(private userService: UserService, private modalService: NgbModal) {}
+  constructor(private userService: UserService, private modalService: NgbModal, private toastr: ToastrService) {}
 
   public username: string;
   public searchText: string;
@@ -39,18 +40,15 @@ export class AlluserComponent implements OnInit {
     }
   }
   updateUser(user): void {
-    // console.log(user); updateUser
     this.userService.updateUser(user).subscribe(response => {
-      alert('Updated successfully!!');
+      this.toastr.success('User Updated successfully!!');
       console.log(response);
       this.ngOnInit();
     });
   }
   delete(user): void {
-    // alert(book);
-    // console.log(book);
     this.userService.deleteUser(user).subscribe(response => {
-      alert('Deleted successfully!!');
+      this.toastr.success('User Deleted successfully!!');
       console.log(response);
       this.ngOnInit();
     });

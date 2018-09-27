@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SignInService } from './signin.service';
 import { Router } from '@angular/router';
 import { User } from './user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -9,7 +10,8 @@ import { User } from './user';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  constructor(private signInservice: SignInService, private router: Router) {}
+  constructor(private signInservice: SignInService, private router: Router,
+    private toastr: ToastrService) { }
   public user: any[];
   model = new User('', '');
   isLogin = false;
@@ -19,6 +21,7 @@ export class SigninComponent implements OnInit {
     this.signInservice.loginUser(this.model).subscribe(response => {
       // alert("login successfully!!");
       console.log(response);
+      this.toastr.success('Login Success');
       localStorage.setItem('access-token', response['token']);
       localStorage.setItem('username', response['user']['username']);
       localStorage.setItem('email', response['user']['email']);
@@ -34,6 +37,7 @@ export class SigninComponent implements OnInit {
     // alert('clicked')
   }
   reset(): void {
+    this.toastr.success('Email Sended');
     this.isLogin = false;
   }
 }

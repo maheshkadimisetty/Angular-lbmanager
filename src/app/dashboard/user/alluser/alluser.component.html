@@ -33,9 +33,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let user of users | filterdata: searchText : 'username' ; let i = index ">
-              <td>{{user.username }}</td>
+              <td>{{user.username | titlecase }}</td>
               <td>{{user.email }}</td>
-              <td>{{user.role }}</td>
+              <td>{{user.role | titlecase }}</td>
               <td>{{user.fine }}</td>
               <td style="text-align: center">
                 <button class="btn btn-warning btn-sm" style="margin: 5px" (click)='open(content, user)'>

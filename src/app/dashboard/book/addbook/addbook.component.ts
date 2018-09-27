@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
 import { Book } from './createbook';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addbook',
@@ -8,15 +9,14 @@ import { Book } from './createbook';
   styleUrls: ['./addbook.component.css']
 })
 export class AddbookComponent implements OnInit {
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private toastr: ToastrService) {}
   book = new Book('', '', '', 0);
-  // members : any = {};
   createBook(): void {
-    alert('Added successfully!!');
-    // console.log(this.members);
     this.bookService.addbook(this.book).subscribe(response => {
       // alert("login successfully!!");
+      this.toastr.success('Book Added Successfully');
       console.log(response);
+      this.book = new Book('', '', '', 0);
     });
   }
 

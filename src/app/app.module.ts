@@ -5,10 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
-import { SignInService } from './signin/signin.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RoleGuardService } from './auth/role-guard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 //  './dashboard/filter.pipe';
 
 export function tokenGetter() {
@@ -21,7 +22,12 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule,
+    HttpClientModule, BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

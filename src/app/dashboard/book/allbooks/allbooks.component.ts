@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-allbooks',
@@ -8,7 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./allbooks.component.css']
 })
 export class AllbooksComponent implements OnInit {
-  constructor(private bookService: BookService, private modalService: NgbModal) {}
+  constructor(private bookService: BookService, private modalService: NgbModal, private toastr: ToastrService) {}
   closeResult: string;
   public username: string;
   books: any = [];
@@ -37,17 +38,15 @@ export class AllbooksComponent implements OnInit {
   }
 
   delete(book): void {
-    // alert(book);
-    // console.log(book);
     this.bookService.deletebook(book).subscribe(response => {
-      alert('Deleted successfully!!');
+      this.toastr.success('Book Deleted Sucessfully');
       console.log(response);
       this.ngOnInit();
     });
   }
   updateBook(book): void {
     this.bookService.updatebook(book).subscribe(response => {
-      alert('Updated successfully!!');
+      this.toastr.success('Updated Sucessfully');
       console.log(response);
       this.ngOnInit();
     });

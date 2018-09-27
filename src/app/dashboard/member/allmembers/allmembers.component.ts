@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../service/member.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-allmembers',
   templateUrl: './allmembers.component.html',
   styleUrls: ['./allmembers.component.css']
 })
 export class AllmembersComponent implements OnInit {
-  constructor(private memberService: MemberService, private modalService: NgbModal) {}
+  constructor(private memberService: MemberService, private modalService: NgbModal, private toastr: ToastrService) {}
   closeResult: string;
   searchText: string;
   public username: string;
@@ -39,17 +40,15 @@ export class AllmembersComponent implements OnInit {
      alert(member);
     console.log(member);
     this.memberService.deleteMember(member).subscribe(response => {
-      //   // alert("login successfully!!");
       console.log(response);
-      alert('Deleted successfully!!');
+      this.toastr.success('Deleted Member successfully!!');
       this.ngOnInit();
     });
   }
   updateMember(member): void {
     this.memberService.updateMember(member).subscribe(response => {
-      //   // alert("login successfully!!");
       console.log(response);
-      alert('Updated successfully!!');
+      this.toastr.success('Updated Member successfully!!');
       this.ngOnInit();
     });
   }

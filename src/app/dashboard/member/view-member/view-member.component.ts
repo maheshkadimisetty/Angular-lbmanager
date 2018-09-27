@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberService } from '../service/member.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-member',
@@ -16,14 +17,13 @@ export class ViewMemberComponent implements OnInit {
   showMe = false;
   edit = true;
   payingfine: number;
-  constructor(private router: Router, private memberService: MemberService, private modalService: NgbModal) {}
+  constructor(private router: Router, private memberService: MemberService, private modalService: NgbModal,private toastr: ToastrService) {}
   viewmember(memberId): void {
     let obj = { memberId: memberId };
     this.memberService.fetchMember(obj).subscribe(response => {
       console.log(response);
       this.members = response;
       this.showMe = true;
-     // alert(this.members.memberId);
       this.ngOnInit();
     });
   }
@@ -51,6 +51,7 @@ export class ViewMemberComponent implements OnInit {
     let obj = { memberId: memberId, fine: payingfine };
     console.log(obj);
     this.memberService.payFine(obj).subscribe(response => {
+      this.toastr.success('Fine' + ' ' + obj.fine + ' ' + 'Paid Sucessfully!!' );
       console.log(response);
       this.viewmember(memberId);
     });
@@ -58,13 +59,13 @@ export class ViewMemberComponent implements OnInit {
   delete(members): void {
    this.memberService.deleteMember(members).subscribe(response => {
      console.log(response);
-     alert('Deleted successfully!!');
+     this.toastr.success('Deleted Member successfully!!');
    });
   }
   Update(members): void {
     this.memberService.updateMember(members).subscribe(response => {
       console.log(response);
-      alert('Updated successfully!!');
+      this.toastr.success('Updated Member successfully!!');
       this.viewmember(members.memberId);
       this.edit = true;
     });

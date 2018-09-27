@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../service/book.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-view-book',
   templateUrl: './view-book.component.html',
@@ -10,7 +11,7 @@ export class ViewBookComponent implements OnInit {
   edit = true;
   bookId: any;
   book: any = [];
-  constructor( private bookService: BookService) { }
+  constructor( private bookService: BookService, private toastr: ToastrService) { }
   viewbook(bookId): void {
     let obj = { bookId: bookId };
     this.bookService.fetchBook(obj).subscribe(response => {
@@ -23,13 +24,13 @@ export class ViewBookComponent implements OnInit {
   delete(book): void {
     this.bookService.deletebook(book).subscribe(response => {
       console.log(response);
-      alert('Deleted successfully!!');
+      this.toastr.success('Deleted Book Successfully!!');
     });
    }
    Update(book): void {
      this.bookService.updatebook(book).subscribe(response => {
        console.log(response);
-       alert('Updated successfully!!');
+       this.toastr.success('Updated successfully!!');
        this.viewbook(book.bookId);
        this.edit = true;
      });
