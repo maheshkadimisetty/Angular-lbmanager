@@ -18,26 +18,26 @@
             <div [hidden]="isLogin">
               <form name="loginForm" (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
 
-                <div>
+                <div class="form-group">
                   <input type="text" name="username" class="form-control input-lg" [(ngModel)]="model.username"
                     placeholder="Username">
 
                 </div>
 
-                <div style="margin-top: 20px">
+                <div class="form-group" >
 
                   <input type="password" name="password" class="form-control input-lg" [(ngModel)]="model.password"
                     placeholder="Password">
 
                 </div>
 
-                <div style="margin-top: 35px">
+                <div class="form-group" >
 
                   <button type="submit" class=" form-control btn-primary btn" style="color: white;font-size: 12pt;background-color: #00bfe8">LOG
                     IN</button>
 
                 </div>
-                <div style="margin-top: 25px">
+                <div class="form-group">
                   <a class='btn' (click)="forgot()" style="color: white">Forgot Password</a>
                 </div>
               </form>
@@ -45,14 +45,14 @@
             <div [hidden]="!isLogin">
               <form name="loginForm" (ngSubmit)="reset()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
 
-                <div>
+                <div class="form-group">
 
                   <input type="text" name="username" class="form-control input-lg" [(ngModel)]="model.username"
                     placeholder="Username">
 
                 </div>
 
-                <div style="margin-top: 35px">
+                <div class="form-group">
 
                   <button type="submit" class=" form-control btn-primary btn " style="color: white;font-size: 12pt;background-color: #00bfe8">RESET
                   </button>
