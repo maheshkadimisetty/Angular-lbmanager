@@ -6,3 +6,6 @@ thead{
   background-color: rgb(143, 160, 226);
 
 }
+label{
+  font-weight: bold;
+}

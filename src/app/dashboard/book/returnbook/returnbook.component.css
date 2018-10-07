@@ -10,3 +10,6 @@ tr{
 label{
   font-weight:bold;
 }
+td:nth-child(1){
+  font-weight: bold;
+}
