@@ -25,6 +25,7 @@ export class IssueBookComponent implements OnInit {
   ) {}
   issueDate: any;
   returnDate: any;
+  rDate: any;
   fetchMember(memberId): void {
     let obj = { memberId: memberId };
     this.memberService.fetchMember(obj).subscribe(
@@ -64,9 +65,20 @@ export class IssueBookComponent implements OnInit {
     this.bookService.issueBook(obj).subscribe(response => {
       console.log(response);
       this.toastr.success('Book Issued Sucessfully!!');
-    });
+    },
+      error => {
+        if (error.status === 400) {
+          this.toastr.warning('Exceed Book Limit');
+        } else {
+          this.toastr.warning('Internal server Error');
+        }
+      });
   }
   ngOnInit() {
     this.issueDate = new Date().toISOString().split('T')[0];
+    this.returnDate = new Date();
+    this.returnDate.setDate(this.returnDate.getDate() + 15);
+    console.log(this.returnDate.toISOString().split('T')[0]);
+    this.rDate = this.returnDate.toISOString().split('T')[0];
   }
 }
