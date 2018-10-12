@@ -16,7 +16,7 @@ export class IssueBookComponent implements OnInit {
   bookId: any;
   mshow = true;
   bshow = true;
-
+  bId = true;
   public now: Date = new Date();
   constructor(
     private toastr: ToastrService,
@@ -33,6 +33,11 @@ export class IssueBookComponent implements OnInit {
         console.log(response);
         this.mshow = true;
         this.members = response;
+        if ( this.members.bookLimit === 0) {
+        this.bId = true;
+        } else {
+          this.bId = false;
+        }
       },
       error => {
         if (error.status === 400) {
@@ -78,7 +83,6 @@ export class IssueBookComponent implements OnInit {
     this.issueDate = new Date().toISOString().split('T')[0];
     this.returnDate = new Date();
     this.returnDate.setDate(this.returnDate.getDate() + 15);
-    console.log(this.returnDate.toISOString().split('T')[0]);
     this.rDate = this.returnDate.toISOString().split('T')[0];
   }
 }
