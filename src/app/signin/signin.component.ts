@@ -30,6 +30,15 @@ export class SigninComponent implements OnInit {
       // console.log("form data",inputForm);
       // alert("login successfully!!")
       this.router.navigate(['/dashboard/dashboard']);
+    }
+      , error => {
+        if (error.status === 401) {
+          this.toastr.warning('Invalid Username and Password');
+        } else if (error.status === 500 ) {
+          this.toastr.warning(' Username and Password is Required');
+        } else {
+          this.toastr.warning('Internal server Error');
+        }
     });
   }
   forgot(): void {

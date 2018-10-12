@@ -15,8 +15,13 @@ export class IssueBookComponent implements OnInit {
   memberId: any;
   bookId: any;
   public now: Date = new Date();
-  constructor(private toastr: ToastrService, private memberService: MemberService, private bookService: BookService) {
-   }
+  constructor(
+    private toastr: ToastrService,
+    private memberService: MemberService,
+    private bookService: BookService
+  ) {}
+  issueDate: any;
+  returnDate: any;
   fetchMember(memberId): void {
     let obj = { memberId: memberId };
     this.memberService.fetchMember(obj).subscribe(response => {
@@ -41,6 +46,6 @@ export class IssueBookComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.issueDate = new Date().toISOString().split('T')[0];
   }
-
 }
