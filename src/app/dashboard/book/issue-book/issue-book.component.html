@@ -17,6 +17,8 @@
                 <input type="text" name="memberId" class="form-control" (blur)='fetchMember(issuebook.memberId)'
                   [(ngModel)]='issuebook.memberId' required>
               </div>
+              <p  *ngIf="!mshow" style="color: red">Member Not Exist </p>
+              <p *ngIf="members.bookLimit===0" style="color: red">Exceed Book Limit</p>
             </div>
             <div class="form-group ">
               <label>Member Name:</label>
@@ -38,6 +40,7 @@
                 <input type="text" name="bookId" class="form-control" (blur)='fetchBook(issuebook.bookId)' [(ngModel)]='issuebook.bookId'
                   required>
               </div>
+              <p  *ngIf="!bshow" style="color: red">Book Not Exist </p>
             </div>
             <div class="form-group ">
               <label>Book Name:</label>

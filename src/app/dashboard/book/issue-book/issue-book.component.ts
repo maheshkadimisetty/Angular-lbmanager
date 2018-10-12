@@ -14,6 +14,9 @@ export class IssueBookComponent implements OnInit {
   issuebook: any = [];
   memberId: any;
   bookId: any;
+  mshow = true;
+  bshow = true;
+
   public now: Date = new Date();
   constructor(
     private toastr: ToastrService,
@@ -24,16 +27,34 @@ export class IssueBookComponent implements OnInit {
   returnDate: any;
   fetchMember(memberId): void {
     let obj = { memberId: memberId };
-    this.memberService.fetchMember(obj).subscribe(response => {
-      console.log(response);
-      this.members = response;
-    });
+    this.memberService.fetchMember(obj).subscribe(
+      response => {
+        console.log(response);
+        this.mshow = true;
+        this.members = response;
+      },
+      error => {
+        if (error.status === 400) {
+          this.mshow = false;
+        } else {
+          this.toastr.warning('Internal server Error');
+        }
+      }
+    );
   }
   fetchBook(bookId): void {
     let obj = { bookId: bookId };
     this.bookService.fetchBook(obj).subscribe(response => {
       console.log(response);
+      this.bshow = true;
       this.book = response;
+    },
+    error => {
+      if (error.status === 400) {
+        this.bshow = false;
+      } else {
+        this.toastr.warning('Internal server Error');
+      }
     });
   }
 
