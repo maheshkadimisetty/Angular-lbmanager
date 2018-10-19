@@ -13,31 +13,32 @@
     </div>
     <div class="card-body">
       <div class="table table-responsive ">
-        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover ">
+        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover "
+          [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]="5">
           <thead>
             <tr>
-              <th class="id" ng-click="sort_by('username')">User Name&nbsp;
-                <i class="glyphicon pull-right" ng-class="getIcon('username')"></i>
+              <th>
+                <mfDefaultSorter by="username">User Name</mfDefaultSorter>
               </th>
-              <th class="name" ng-click="sort_by('email')">Email Id
-                <i class="glyphicon pull-right" ng-class="getIcon('email')"></i>
+              <th>
+                <mfDefaultSorter by="email">Email Id</mfDefaultSorter>
               </th>
-              <th class="description" ng-click="sort_by('role')">Role
-                <i class="glyphicon pull-right" ng-class="getIcon('role')"></i>
+              <th>
+                <mfDefaultSorter by="role">Role</mfDefaultSorter>
               </th>
-              <th class="author" ng-click="sort_by('fine')">Fine
-                <i class="glyphicon pull-right" ng-class="getIcon('fine')"></i>
+              <th>
+                <mfDefaultSorter by="fine">Fine</mfDefaultSorter>
               </th>
-              <th class="field5"></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users | filterdata: searchText : 'username' ; let i = index ">
+            <tr *ngFor="let user of mf.data">
               <td>{{user.username | titlecase }}</td>
               <td>{{user.email }}</td>
               <td>{{user.role | titlecase }}</td>
               <td>{{user.fine }}</td>
-              <td style="text-align: center">
+              <td style="text-align: center;display: flex">
                 <button class="btn btn-warning btn-sm" style="margin: 5px" (click)='open(content, user)'>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
@@ -46,6 +47,14 @@
                 </button>
               </td>
             </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
       <ng-template #content let-modal>

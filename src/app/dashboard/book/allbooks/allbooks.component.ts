@@ -12,7 +12,7 @@ export class AllbooksComponent implements OnInit {
   constructor(private bookService: BookService, private modalService: NgbModal, private toastr: ToastrService) {}
   closeResult: string;
   public username: string;
-  books: any = [];
+  data: any = [];
   book: any;
 
   open(content, book) {
@@ -54,8 +54,8 @@ export class AllbooksComponent implements OnInit {
   ngOnInit() {
     this.bookService.allbooks().subscribe(response => {
       console.log(response);
-      this.books = response;
-      console.log(this.books);
+      this.data = response;
+      console.log(this.data);
     });
   }
 }

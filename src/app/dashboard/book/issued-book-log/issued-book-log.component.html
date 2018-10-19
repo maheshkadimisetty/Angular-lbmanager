@@ -13,31 +13,32 @@
     </div>
     <div class="card-body">
       <div class="table table-responsive ">
-        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover ">
+        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover "
+          [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]="5">
           <thead>
             <tr>
-              <th class="id" ng-click="sort_by('bookId')">Book Issue ID
-                <i class="glyphicon pull-right" ng-class="getIcon('bookId')"></i>
+              <th>
+                <mfDefaultSorter by="bookIssueId">Book Issue ID</mfDefaultSorter>
               </th>
-              <th class="name" ng-click="sort_by('bookName')">Book ID
-                <i class="glyphicon pull-right" ng-class="getIcon('bookName')"></i>
+              <th>
+                <mfDefaultSorter by="bookId">Book ID</mfDefaultSorter>
               </th>
-              <th class="description" ng-click="sort_by('department')">Member ID
-                <i class="glyphicon pull-right" ng-class="getIcon('department')"></i>
+              <th>
+                <mfDefaultSorter by="memberId">Member Id</mfDefaultSorter>
               </th>
-              <th class="author" ng-click="sort_by('author')">Issued By
-                <i class="glyphicon pull-right" ng-class="getIcon('author')"></i>
+              <th>
+                <mfDefaultSorter by="issuedBy">Issued By</mfDefaultSorter>
               </th>
-              <th class="field3" ng-click="sort_by('availableDate')">Issue Date
-                <i class="glyphicon pull-right" ng-class="getIcon('availableDate')"></i>
+              <th>
+                <mfDefaultSorter by="issuedDate">Issue Date</mfDefaultSorter>
               </th>
-              <th class="field4" ng-click="sort_by('isAvailable')">Return Date
-                <i class="glyphicon pull-right" ng-class="getIcon('isAvailable')"></i>
+              <th>
+                <mfDefaultSorter by="returnDate">Return Date</mfDefaultSorter>
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let book of ibooks">
+            <tr *ngFor="let book of mf.data">
               <td>{{book.bookIssueId}}</td>
               <td>{{book.bookId}}</td>
               <td>{{book.memberId }}</td>
@@ -46,6 +47,13 @@
               <td>{{book.returnDate | date}}</td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

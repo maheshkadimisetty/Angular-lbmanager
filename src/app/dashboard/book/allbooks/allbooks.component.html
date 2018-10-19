@@ -13,39 +13,40 @@
     </div>
     <div class="card-body">
       <div class="table table-responsive ">
-        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover ">
+        <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover "
+          [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]="5">
           <thead>
             <tr>
-              <th class="id" ng-click="sort_by('bookId')">Book ID&nbsp;
-                <i class="glyphicon pull-right" ng-class="getIcon('bookId')"></i>
+              <th class="id">
+                <mfDefaultSorter by="bookId">Book ID</mfDefaultSorter>
               </th>
-              <th class="name" ng-click="sort_by('bookName')">Book Name
-                <i class="glyphicon pull-right" ng-class="getIcon('bookName')"></i>
+              <th class="name">
+                <mfDefaultSorter by="bookName">Book Name</mfDefaultSorter>
               </th>
-              <th class="description" ng-click="sort_by('department')">Deparment
-                <i class="glyphicon pull-right" ng-class="getIcon('department')"></i>
+              <th class="description">
+                <mfDefaultSorter by="department">Deparment</mfDefaultSorter>
               </th>
-              <th class="author" ng-click="sort_by('author')">Author
-                <i class="glyphicon pull-right" ng-class="getIcon('author')"></i>
+              <th class="author">
+                <mfDefaultSorter by="author">Author</mfDefaultSorter>
               </th>
-              <th class="field3" ng-click="sort_by('availableDate')">Avaliable Date
-                <i class="glyphicon pull-right" ng-class="getIcon('availableDate')"></i>
+              <th class="availableDate">
+                <mfDefaultSorter by="availableDate">Avaliable Date</mfDefaultSorter>
               </th>
-              <th class="field4" ng-click="sort_by('isAvailable')">Available
-                <i class="glyphicon pull-right" ng-class="getIcon('isAvailable')"></i>
+              <th class="isAvailable">
+                <mfDefaultSorter by="isAvailable">Available</mfDefaultSorter>
               </th>
               <th class="field5"></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let book of books">
+            <tr *ngFor="let book of mf.data">
               <td>{{book.bookId}}</td>
               <td>{{book.bookName}}</td>
               <td>{{book.department }}</td>
               <td>{{book.author }}</td>
               <td>{{book.availableDate | date }}</td>
               <td>{{book.isAvailable}}</td>
-              <td style="text-align: center">
+              <td style="text-align: center;display: flex">
                 <button class="btn btn-warning btn-sm" style="margin: 5px" (click)='open(content, book)'>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
@@ -55,6 +56,13 @@
               </td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
       <ng-template #content let-modal>
@@ -65,15 +73,17 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="updateBookForm" name="updateBookForm" (ngSubmit)="updateBook(book)"  (ngSubmit)="modal.dismiss('Cross click')" novalidate>
+          <form id="updateBookForm" name="updateBookForm" (ngSubmit)="updateBook(book)" (ngSubmit)="modal.dismiss('Cross click')"
+            novalidate>
             <div class="form-group ">
               <label>Book Id:</label>
 
               <div class="input-group ">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" ></span>
+                  <span class="input-group-text"></span>
                 </div>
-                <input [disabled]="'true'" type="text" name="bookId" class="form-control" [(ngModel)]="book.bookId" required>
+                <input [disabled]="'true'" type="text" name="bookId" class="form-control" [(ngModel)]="book.bookId"
+                  required>
               </div>
             </div>
             <div class="form-group ">
@@ -81,7 +91,7 @@
 
               <div class="input-group ">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" ></span>
+                  <span class="input-group-text"></span>
                 </div>
                 <input type="text" name="bookName" class="form-control" [(ngModel)]="book.bookName" required>
               </div>
@@ -91,9 +101,9 @@
 
               <div class="input-group ">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" ></span>
+                  <span class="input-group-text"></span>
                 </div>
-                <input type="text" name="author" class="form-control"  [(ngModel)]="book.author" required>
+                <input type="text" name="author" class="form-control" [(ngModel)]="book.author" required>
 
               </div>
             </div>
@@ -102,7 +112,7 @@
 
               <div class="input-group ">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" ></span>
+                  <span class="input-group-text"></span>
                 </div>
                 <select name="department" class="form-control" [(ngModel)]="book.department" required>
                   <option value="ECE">ECE</option>
@@ -116,7 +126,7 @@
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-block btn-success" >Submit</button>
+              <button type="submit" class="btn btn-block btn-success">Submit</button>
             </div>
           </form>
         </div>

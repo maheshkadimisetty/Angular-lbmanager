@@ -13,26 +13,48 @@
   </div>
   <div class="card-body">
     <div class="table table-responsive-md table-responsive">
-      <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover " id="table1">
+      <table class="table table-bordered table-striped table-responsive-md table-responsive-sm table-condensed table-hover "
+        [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]="5">
         <thead>
           <tr style="width: 50px">
-            <th ng-click="sort_by('memberId')">Member ID&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('memberId')"></i></th>
-            <th ng-click="sort_by('firstName')">First Name&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('firstName')"></i></th>
-            <th ng-click="sort_by('lastName')">Last Name<i class="glyphicon pull-right" ng-class="getIcon('lastName')"></i></th>
-            <th ng-click="sort_by('pin')">Roll Number&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('pin')"></i></th>
-            <th ng-click="sort_by('joinDate')">Join Date&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('joinDate')"></i></th>
-            <th ng-click="sort_by('email')">Email&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('email')"></i></th>
-            <th ng-click="sort_by('gender')">Gender&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('gender')"></i></th>
-            <th ng-click="sort_by('department')">Deparment&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('department')"></i></th>
-            <th ng-click="sort_by('bookLimit')">No Of Books&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('bookLimit')"></i></th>
-            <th ng-click="sort_by('fine')">Fine&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('fine')"></i></th>
-            <th ng-click="sort_by('membertype')">Member Type&nbsp;<i class="glyphicon pull-right" ng-class="getIcon('membertype')"></i></th>
+            <th>
+              <mfDefaultSorter by="memberId">Member ID</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="firstName">First Name</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="lastName">Last Name</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="pin">Roll Number</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="joinDate">Join Date</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="email">Email ID</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="gender">Gender</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="department">Deparment</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="bookLimit">No Of Books</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="fine">Fine</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="membertype">Member Type</mfDefaultSorter>
+            </th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let member of members">
-            <!--<tr *ngFor="let member of members | filter : searchText">-->
+          <tr *ngFor="let member of mf.data">
             <td>{{member.memberId}}</td>
             <td>{{member.firstName |titlecase }}</td>
             <td>{{member.lastName |titlecase }}</td>
@@ -44,11 +66,19 @@
             <td>{{member.bookLimit}}</td>
             <td>{{member.fine}}</td>
             <td>{{member.membertype}}</td>
-            <td style="text-align: center"><button class="btn btn-warning btn-md" style="margin: 5px;display: inline" (click)='open(content, member)'><i
-                  class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button class="btn btn-danger btn-md" style="margin: 5px;display: inline"
-                (click)=' delete(member)'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+            <td style="text-align: center; display: flex;"><button class="btn btn-warning btn-md" style="margin: 5px;display: inline"
+                (click)='open(content, member)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><button
+                class="btn btn-danger btn-md" style="margin: 5px;display: inline" (click)=' delete(member)'><i class="fa fa-trash"
+                  aria-hidden="true"></i></button></td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+              <td colspan="12">
+                  <mfBootstrapPaginator  [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
       </table>
     </div>
     <ng-template #content let-modal>
@@ -68,7 +98,8 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"></span>
               </div>
-              <input [disabled]="'true'" type="text" name="memberId" class="form-control" [(ngModel)]="member.memberId" required>
+              <input [disabled]="'true'" type="text" name="memberId" class="form-control" [(ngModel)]="member.memberId"
+                required>
             </div>
           </div>
           <div class="form-group ">
@@ -129,7 +160,8 @@
             <label>Gender:</label>
             <div class="input-group ">
               <label class="radio-inline">
-                <input type="radio" name="gender" checked="checked" [(ngModel)]="member.gender" value="Male" required> Male
+                <input type="radio" name="gender" checked="checked" [(ngModel)]="member.gender" value="Male" required>
+                Male
               </label>
               <label class="radio-inline" style="padding-left: 10px">
                 <input type="radio" name="gender" [(ngModel)]="member.gender" value="Female" required> Female
@@ -159,7 +191,8 @@
 
             <div class="input-group ">
               <label class="radio-inline">
-                <input type="radio" name="membertype" checked="checked" value="Student" [(ngModel)]="member.membertype" required>                Student
+                <input type="radio" name="membertype" checked="checked" value="Student" [(ngModel)]="member.membertype"
+                  required> Student
               </label>
               <label class="radio-inline" style="padding-left: 10px">
                 <input type="radio" name="membertype" value="Faculty" [(ngModel)]="member.membertype"> Facaulty

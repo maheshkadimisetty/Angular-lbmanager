@@ -15,7 +15,7 @@ export class AlluserComponent implements OnInit {
 
   public username: string;
   public searchText: string;
-  users: any = [];
+  data: any = [];
   user: any;
 
   open(content, user) {
@@ -56,8 +56,8 @@ export class AlluserComponent implements OnInit {
   ngOnInit() {
     this.userService.allUsers().subscribe(response => {
       console.log(response);
-      this.users = response;
-      console.log(this.users);
+      this.data = response;
+      console.log(this.data);
     });
   }
 }

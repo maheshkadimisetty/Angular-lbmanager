@@ -10,7 +10,7 @@ import { RoleGuardService } from './auth/role-guard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-//  './dashboard/filter.pipe';
+import { DataTableModule } from 'angular-6-datatable';
 
 export function tokenGetter() {
   return localStorage.getItem('access-token');
@@ -22,11 +22,13 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule, BrowserAnimationsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DataTableModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
-      preventDuplicates: true,
+      preventDuplicates: true
     }),
     JwtModule.forRoot({
       config: {
@@ -37,8 +39,7 @@ export function tokenGetter() {
     })
   ],
   providers: [RoleGuardService],
-  exports: [
-],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

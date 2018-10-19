@@ -12,7 +12,7 @@ export class AllmembersComponent implements OnInit {
   closeResult: string;
   searchText: string;
   public username: string;
-  members: any = [];
+  data: any = [];
   member: any;
   open(content, member) {
     this.member = member;
@@ -55,8 +55,8 @@ export class AllmembersComponent implements OnInit {
   ngOnInit() {
     this.memberService.allMembers().subscribe(response => {
       console.log(response);
-      this.members = response;
-      console.log(this.members);
+      this.data = response;
+      console.log(this.data);
     });
   }
 }

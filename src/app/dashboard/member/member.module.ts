@@ -6,12 +6,13 @@ import { AllmembersComponent } from './allmembers/allmembers.component';
 import { MemberComponent } from './member.component';
 import { CreatememberComponent } from './createmember/createmember.component';
 import { ViewMemberComponent } from './view-member/view-member.component';
+import { DataTableModule } from 'angular-6-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
     MemberRoutingModule,
-    FormsModule
+    FormsModule, DataTableModule
   ],
   declarations: [AllmembersComponent, MemberComponent, CreatememberComponent, ViewMemberComponent]
 })
