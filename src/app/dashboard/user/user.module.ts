@@ -7,8 +7,10 @@ import { UserComponent } from './user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { FilterdataPipe } from '.././filter.pipe';
 import { DataTableModule } from 'angular-6-datatable';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+
 @NgModule({
-  imports: [CommonModule, UserRoutingModule, FormsModule, DataTableModule],
+  imports: [CommonModule, UserRoutingModule, FormsModule, DataTableModule, NgHttpLoaderModule],
   declarations: [AlluserComponent, UserComponent, AdduserComponent, FilterdataPipe]
 })
 export class UserModule {}

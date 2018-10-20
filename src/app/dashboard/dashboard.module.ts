@@ -4,16 +4,10 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DashboardRoutingModule
-  ],
-  declarations: [
-    DashboardComponent,
-    HomeComponent,
-    AboutComponent
-  ]
+  imports: [CommonModule, DashboardRoutingModule, NgHttpLoaderModule],
+  declarations: [DashboardComponent, HomeComponent, AboutComponent]
 })
-export class DashboardModule { }
+export class DashboardModule {}

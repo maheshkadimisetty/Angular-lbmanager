@@ -10,9 +10,10 @@ import { ReturnbookComponent } from './returnbook/returnbook.component';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { IssueBookComponent } from './issue-book/issue-book.component';
 import { DataTableModule } from 'angular-6-datatable';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, BookRoutingModule, DataTableModule],
+  imports: [CommonModule, FormsModule, BookRoutingModule, DataTableModule, NgHttpLoaderModule],
   declarations: [
     AllbooksComponent,
     BookComponent,

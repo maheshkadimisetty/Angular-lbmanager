@@ -8,6 +8,10 @@ body {
   font-family: 'Poppins', sans-serif;
   background: #fafafa;
 }
+.container-fluid{
+  padding-right: 0px;
+  padding-left: 0px;
+}
 
 p {
   font-family: 'Poppins', sans-serif;
@@ -278,5 +282,5 @@ thead{
 
 }
 label{
-  font-weight:bold; 
+  font-weight:bold;
 }

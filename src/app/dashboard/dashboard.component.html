@@ -1,131 +1,109 @@
-
-
-
-<div class="wrapper">
-  <!-- Sidebar Holder -->
-  <nav id="sidebar">
-    <div class="sidebar-header">
-      <h3>Library Management</h3>
-      <strong>LBM</strong>
-    </div>
-
-    <ul class="list-unstyled components">
-      <li class="active">
-        <a routerLink="/dashboard/dashboard/home" id="mainHomelink">
-          <i class="fa fa-home" aria-hidden="true"></i>
-          Home
-        </a>
-      </li>
-      <li>
-        <a routerLink="/dashboard/dashboard/about" id="aboutlink">
-          <i class="fa fa-briefcase" aria-hidden="true"></i>
-          About
-        </a>
-      </li>
-      <li>
-        <a class="linkcollapse dropdown-toggle" id="memberHomelink" data-toggle="collapse" aria-expanded="false">
-          <i class="fa fa-user"></i>
-          Member
-        </a>
-        <ul class="list-unstyled" id="pageSubmenu1">
-          <li><a routerLink="member/createMember">Add Member</a></li>
-          <li><a routerLink="member/allMembers">Total Members</a></li>
-          <li><a routerLink="member/viewMember">View Member</a></li>
-        </ul>
-      </li>
-      <li>
-
-        <a  class="linkcollapse dropdown-toggle"  id="bookHomelink" data-toggle="collapse" aria-expanded="false">
-          <i class="fa fa-book"></i>
-          Book
-        </a>
-        <ul class="list-unstyled" id="pageSubmenu">
-          <li><a routerLink="book/addBook">Add Book</a></li>
-          <li><a routerLink="book/viewBook">View Book</a></li>
-          <li><a routerLink="book/issueBook">Issue Book</a></li>
-          <li><a routerLink="book/returnBook">Return Book</a></li>
-          <li><a routerLink="book/allBooks">Total Books</a></li>
-          <li><a routerLink="book/issuedBooks">Issued Books Log</a></li>
-        </ul>
-      </li>
-      <li *ngIf="role=='admin'">
-        <a class="linkcollapse dropdown-toggle" id="AlluserHomelink" data-toggle="collapse" aria-expanded="false">
-          <i class="fa fa-user"></i>
-          Manage Users
-        </a>
-        <ul class="list-unstyled" id="pageSubmenu2">
-          <li><a routerLink="user/addUser">Add User</a></li>
-          <li><a routerLink="user/allUsers">All Users</a></li>
-        </ul>
-      </li>
-      <li>
-        <a routerLink="/charts">
-          <i class="fa fa-link"></i>
-          Charts
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-paperclip"></i>
-          FAQ
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-send"></i>
-          Contact
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Page Content Holder -->
-  <div id="content">
-
-    <nav class="navbar navbar-primary " >
-      <div class="container-fluid" style="padding-right: 0px; right: 0px">
-        <ul type="button" id="sidebarCollapse" class="btn btn-primary navbar-btn" style="display: inline-block">
-          <i class="fa fa-align-justify"></i>
-        </ul>
-
-        <ul class="dropdown nav navbar-top-links navbar-right  pull-right " style="display: inline-block;left: 0">
-          <!-- Dropdown -->
-          <li class="nav-item dropdown" >
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              <span class="fa fa-user"></span>
-              <span style="padding-left: 2px;padding-right: 2px; margin: 5px">{{username | uppercase}}</span>
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" ><i class="fa fa-user fa-fw"></i> User Profile</a>
-              <a class="dropdown-item" ><i class="fa fa-gear fa-fw"></i> Settings</a>
-              <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-         <!-- <li><a routerLink="/userProfile" class="usermenu" ><i class="fa fa-user fa-fw"></i> User Profile</a>
-          </li>
-          <li><a href="#" class="usermenu"><i class="fa fa-gear fa-fw"></i> Settings</a>
-          </li>
-          <li><a class="usermenu" (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-          </li>-->
-            </div>
-          </li>
-         <!-- <li>
-
-            <a class="dropdown-toggle" data-toggle="dropdown" >
-              <span class="fa fa-user"></span>
-              <span style="padding-left: 2px;padding-right: 2px">{{username}}</span>
-            </a>
-            <ul class="dropdown-menu usermenu dropdown-user">
-              <li><a routerLink="/userProfile" class="usermenu" ><i class="fa fa-user fa-fw"></i> User Profile</a>
-              </li>
-              <li><a href="#" class="usermenu"><i class="fa fa-gear fa-fw"></i> Settings</a>
-              </li>
-              <li><a class="usermenu" (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-              </li>
-            </ul>
-            &lt;!&ndash; /.dropdown-user &ndash;&gt;
-          </li>-->
-        </ul>
+<div class="container-fluid">
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>Library Management</h3>
+        <strong>LBM</strong>
       </div>
+
+      <ul class="list-unstyled components">
+        <li class="active">
+          <a routerLink="/dashboard/dashboard/home" id="mainHomelink">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/dashboard/about" id="aboutlink">
+            <i class="fa fa-briefcase" aria-hidden="true"></i>
+            About
+          </a>
+        </li>
+        <li>
+          <a class="linkcollapse dropdown-toggle" id="memberHomelink" data-toggle="collapse" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            Member
+          </a>
+          <ul class="list-unstyled" id="pageSubmenu1">
+            <li><a routerLink="member/createMember">Add Member</a></li>
+            <li><a routerLink="member/allMembers">Total Members</a></li>
+            <li><a routerLink="member/viewMember">View Member</a></li>
+          </ul>
+        </li>
+        <li>
+
+          <a  class="linkcollapse dropdown-toggle"  id="bookHomelink" data-toggle="collapse" aria-expanded="false">
+            <i class="fa fa-book"></i>
+            Book
+          </a>
+          <ul class="list-unstyled" id="pageSubmenu">
+            <li><a routerLink="book/addBook">Add Book</a></li>
+            <li><a routerLink="book/viewBook">View Book</a></li>
+            <li><a routerLink="book/issueBook">Issue Book</a></li>
+            <li><a routerLink="book/returnBook">Return Book</a></li>
+            <li><a routerLink="book/allBooks">Total Books</a></li>
+            <li><a routerLink="book/issuedBooks">Issued Books Log</a></li>
+          </ul>
+        </li>
+        <li *ngIf="role=='admin'">
+          <a class="linkcollapse dropdown-toggle" id="AlluserHomelink" data-toggle="collapse" aria-expanded="false">
+            <i class="fa fa-user"></i>
+            Manage Users
+          </a>
+          <ul class="list-unstyled" id="pageSubmenu2">
+            <li><a routerLink="user/addUser">Add User</a></li>
+            <li><a routerLink="user/allUsers">All Users</a></li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="/charts">
+            <i class="fa fa-link"></i>
+            Charts
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-paperclip"></i>
+            FAQ
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-send"></i>
+            Contact
+          </a>
+        </li>
+      </ul>
     </nav>
-    <router-outlet ></router-outlet>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+      <nav class="navbar navbar-primary " >
+        <div class="container-fluid" style="padding-right: 0px; right: 0px">
+          <ul type="button" id="sidebarCollapse" class="btn btn-primary navbar-btn" style="display: inline-block">
+            <i class="fa fa-align-justify"></i>
+          </ul>
+
+          <ul class="dropdown nav navbar-top-links navbar-right  pull-right " style="display: inline-block;left: 0">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" >
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                <span class="fa fa-user"></span>
+                <span style="padding-left: 2px;padding-right: 2px; margin: 5px">{{username | uppercase}}</span>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" ><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <a class="dropdown-item" ><i class="fa fa-gear fa-fw"></i> Settings</a>
+                <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <router-outlet ></router-outlet>
+    </div>
   </div>
 </div>
+

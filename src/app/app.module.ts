@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DataTableModule } from 'angular-6-datatable';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 export function tokenGetter() {
   return localStorage.getItem('access-token');
@@ -23,6 +24,7 @@ export function tokenGetter() {
     FormsModule,
     NgbModule,
     HttpClientModule,
+    NgHttpLoaderModule,
     BrowserAnimationsModule,
     DataTableModule,
     ToastrModule.forRoot({

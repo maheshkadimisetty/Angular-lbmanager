@@ -7,12 +7,13 @@ import { MemberComponent } from './member.component';
 import { CreatememberComponent } from './createmember/createmember.component';
 import { ViewMemberComponent } from './view-member/view-member.component';
 import { DataTableModule } from 'angular-6-datatable';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   imports: [
     CommonModule,
     MemberRoutingModule,
-    FormsModule, DataTableModule
+    FormsModule, DataTableModule, NgHttpLoaderModule
   ],
   declarations: [AllmembersComponent, MemberComponent, CreatememberComponent, ViewMemberComponent]
 })
