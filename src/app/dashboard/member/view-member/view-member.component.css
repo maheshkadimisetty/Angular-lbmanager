@@ -21,3 +21,6 @@ margin: 5px;
 td:nth-child(1) {
   font-weight: bold;
 }
+p{
+color: red;
+}

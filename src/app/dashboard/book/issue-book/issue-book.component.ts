@@ -70,6 +70,10 @@ export class IssueBookComponent implements OnInit {
     this.bookService.issueBook(obj).subscribe(response => {
       console.log(response);
       this.toastr.success('Book Issued Sucessfully!!');
+      issuebook.bookId = '';
+      issuebook.memberId = '';
+      this.members.firstName = '';
+      this.book.bookName = '';
     },
       error => {
         if (error.status === 400) {

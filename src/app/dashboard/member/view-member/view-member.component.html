@@ -13,6 +13,7 @@
       </div>
     </div>
     <div class="card-body">
+      <p *ngIf="errormsg"> Member does't Exist !!</p>
       <div *ngIf="showMe">
         <table class="table-responsive" style="border: none">
           <tbody>
@@ -119,7 +120,7 @@
               <td>Fine</td>
               <td>:</td>
               <td>{{members.fine}}</td>
-              <td><span><button class="btn-primary btn btn-sm" (click)='open(content,members)'>Pay Fine</button></span></td>
+              <td><span><button class="btn-primary btn btn-sm" [disabled]='members.fine==0' (click)='open(content,members)'>Pay Fine</button></span></td>
             </tr>
           </tbody>
         </table>
@@ -158,7 +159,7 @@
                 <tr>
                   <td>Pay Fine</td>
                   <td>:</td>
-                  <td><input type="number" class="form-control" [(ngModel)]="payingfine" required></td>
+                  <td><input type="number" class="form-control"  [(ngModel)]="payingfine" required></td>
                 </tr>
                 <tr>
                   <td></td>

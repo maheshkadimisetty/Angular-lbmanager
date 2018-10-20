@@ -42,6 +42,11 @@ export class AllbooksComponent implements OnInit {
       this.toastr.success('Book Deleted Sucessfully');
       console.log(response);
       this.ngOnInit();
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('Book already issued to Someone.Please Collect before deleting!!');
+      }
     });
   }
   updateBook(book): void {
@@ -49,6 +54,11 @@ export class AllbooksComponent implements OnInit {
       this.toastr.success('Updated Sucessfully');
       console.log(response);
       this.ngOnInit();
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('error in updating book!!');
+      }
     });
   }
   ngOnInit() {
@@ -56,6 +66,11 @@ export class AllbooksComponent implements OnInit {
       console.log(response);
       this.data = response;
       console.log(this.data);
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('error in fetching data!!');
+      }
     });
   }
 }

@@ -16,15 +16,27 @@ export class ViewMemberComponent implements OnInit {
   fechMemIssueBooks: any = [];
   showMe = false;
   edit = true;
+  errormsg = false;
   payingfine: number;
-  constructor(private router: Router, private memberService: MemberService, private modalService: NgbModal,private toastr: ToastrService) {}
+  constructor(
+    private router: Router,
+    private memberService: MemberService,
+    private modalService: NgbModal,
+    private toastr: ToastrService
+  ) {}
   viewmember(memberId): void {
     let obj = { memberId: memberId };
     this.memberService.fetchMember(obj).subscribe(response => {
       console.log(response);
+      this.errormsg = false;
       this.members = response;
       this.showMe = true;
       this.ngOnInit();
+    },
+    error => {
+      if (error.status === 400) {
+        this.errormsg = true;
+      }
     });
   }
   open(content, members) {
@@ -51,16 +63,26 @@ export class ViewMemberComponent implements OnInit {
     let obj = { memberId: memberId, fine: payingfine };
     console.log(obj);
     this.memberService.payFine(obj).subscribe(response => {
-      this.toastr.success('Fine' + ' ' + obj.fine + ' ' + 'Paid Sucessfully!!' );
+      this.toastr.success('Fine' + ' ' + obj.fine + ' ' + 'Paid Sucessfully!!');
       console.log(response);
       this.viewmember(memberId);
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('error in paying fine!!');
+      }
     });
   }
   delete(members): void {
-   this.memberService.deleteMember(members).subscribe(response => {
-     console.log(response);
-     this.toastr.success('Deleted Member successfully!!');
-   });
+    this.memberService.deleteMember(members).subscribe(response => {
+      console.log(response);
+      this.toastr.success('Deleted Member successfully!!');
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('Please Collect Fine & Books before deleting!!');
+      }
+    });
   }
   Update(members): void {
     this.memberService.updateMember(members).subscribe(response => {
@@ -68,6 +90,11 @@ export class ViewMemberComponent implements OnInit {
       this.toastr.success('Updated Member successfully!!');
       this.viewmember(members.memberId);
       this.edit = true;
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('error in updating member!!');
+      }
     });
   }
   returnBook(bookIssueId): void {
@@ -76,9 +103,16 @@ export class ViewMemberComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.memberService.fetchIssuedBooks(this.memberId).subscribe(response => {
-      console.log(response);
-      this.fechMemIssueBooks = response;
-    });
+    this.memberService.fetchIssuedBooks(this.memberId).subscribe(
+      response => {
+        console.log(response);
+        this.fechMemIssueBooks = response;
+      },
+      error => {
+        if (error.status === 400) {
+          this.toastr.warning('error in fetching books!!');
+        }
+      }
+    );
   }
 }

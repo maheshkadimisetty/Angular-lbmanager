@@ -28,3 +28,6 @@ label{
 td:nth-child(1){
   font-weight: bold;
 }
+p{
+  color: red;
+}

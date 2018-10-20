@@ -11,6 +11,7 @@ export class ViewBookComponent implements OnInit {
   edit = true;
   bookId: any;
   book: any = [];
+  errormsg = false;
   constructor( private bookService: BookService, private toastr: ToastrService) { }
   viewbook(bookId): void {
     let obj = { bookId: bookId };
@@ -18,13 +19,24 @@ export class ViewBookComponent implements OnInit {
       console.log(response);
       this.book = response;
       this.showMe = true;
+      this.errormsg = false;
       this.ngOnInit();
+    },
+    error => {
+      if (error.status === 400) {
+        this.errormsg = true;
+      }
     });
   }
   delete(book): void {
     this.bookService.deletebook(book).subscribe(response => {
       console.log(response);
       this.toastr.success('Deleted Book Successfully!!');
+    },
+    error => {
+      if (error.status === 400) {
+        this.toastr.warning('Book already issued to Someone.Please Collect before deleting!!');
+      }
     });
    }
    Update(book): void {
@@ -33,6 +45,11 @@ export class ViewBookComponent implements OnInit {
        this.toastr.success('Updated successfully!!');
        this.viewbook(book.bookId);
        this.edit = true;
+     },
+     error => {
+       if (error.status === 400) {
+         this.toastr.warning('error in updating book!!');
+       }
      });
    }
   ngOnInit() {
