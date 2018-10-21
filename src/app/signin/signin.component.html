@@ -17,24 +17,28 @@
           </div>
           <div class="card-body">
             <div [hidden]="isLogin">
-              <form name="loginForm" (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;" novalidate>
+              <form name="loginForm" id="loginForm" #loginForm="ngForm" (ngSubmit)="login()" style="margin-top:10px;margin-bottom: 10px;"
+                novalidate>
 
                 <div class="form-group">
-                  <input type="text" name="username" class="form-control input-lg" [(ngModel)]="model.username"
-                    placeholder="Username">
+                  <input type="text" name="username" id='username' #username="ngModel" class="form-control input-lg"
+                    [(ngModel)]="model.username" placeholder="Username" required>
+                  <span class="help-block" [hidden]="username.valid || username.pristine">
+                    UserName is required
+                  </span>
+                </div>
 
+                <div class="form-group">
+                  <input type="password" name="password" id='password' #password="ngModel" class="form-control input-lg"
+                    minlength="5" [(ngModel)]="model.password" placeholder="Password" required>
+                  <Span class="help-block" [hidden]="password.valid || password.pristine">
+                    Password Min-lenth 5 is required
+                  </Span>
                 </div>
 
                 <div class="form-group">
 
-                  <input type="password" name="password" class="form-control input-lg" [(ngModel)]="model.password"
-                    placeholder="Password">
-
-                </div>
-
-                <div class="form-group">
-
-                  <button type="submit" class=" form-control btn-primary btn" style="color: white;font-size: 12pt;background-color: #00bfe8">LOG
+                  <button type="submit" [disabled]="!loginForm.form.valid" class=" form-control btn-primary btn" style="color: white;font-size: 12pt;background-color: #00bfe8">LOG
                     IN</button>
 
                 </div>
@@ -48,8 +52,8 @@
 
                 <div class="form-group">
 
-                  <input type="text" name="username" class="form-control input-lg" [(ngModel)]="model.username"
-                    placeholder="Username">
+                  <input type="text" name="username"  class="form-control input-lg" [(ngModel)]="model.username"
+                    placeholder="Username" required>
 
                 </div>
 

@@ -42,9 +42,9 @@
           <tbody>
             <tr *ngFor="let book of mf.data">
               <td>{{book.bookId}}</td>
-              <td>{{book.bookName}}</td>
+              <td>{{book.bookName | titlecase}}</td>
               <td>{{book.department }}</td>
-              <td>{{book.author }}</td>
+              <td>{{book.author | titlecase }}</td>
               <td>{{book.availableDate | date }}</td>
               <td>{{book.isAvailable}}</td>
               <td style="text-align: center;display: flex">

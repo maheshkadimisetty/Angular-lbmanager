@@ -15,11 +15,10 @@ export class SigninComponent implements OnInit {
   public user: any[];
   model = new User('', '');
   isLogin = false;
-  ngOnInit() {}
+  ngOnInit() { }
 
   login(): void {
     this.signInservice.loginUser(this.model).subscribe(response => {
-      // alert("login successfully!!");
       console.log(response);
       this.toastr.success('Login Success');
       localStorage.setItem('access-token', response['token']);
@@ -27,8 +26,6 @@ export class SigninComponent implements OnInit {
       localStorage.setItem('email', response['user']['email']);
       localStorage.setItem('role', response['user']['role']);
       console.log(localStorage.getItem('email'));
-      // console.log("form data",inputForm);
-      // alert("login successfully!!")
       this.router.navigate(['/dashboard/dashboard']);
     }
       , error => {
@@ -48,5 +45,6 @@ export class SigninComponent implements OnInit {
   reset(): void {
     this.toastr.success('Email Sended');
     this.isLogin = false;
+    this.model = new User('', '');
   }
 }
