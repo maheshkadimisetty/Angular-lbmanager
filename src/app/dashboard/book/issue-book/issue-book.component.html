@@ -42,6 +42,7 @@
                   [disabled]='bId' required>
               </div>
               <p *ngIf="!bshow" style="color: red">Book Not Exist </p>
+              <p *ngIf="book.isAvailable === false" style="color: red">Book already Issued </p>
             </div>
             <div class="form-group ">
               <label>Book Name:</label>
